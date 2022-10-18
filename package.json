@@ -8,12 +8,12 @@
     "url": "git+https://github.com/timedotcom/greenlight.git"
   },
   "scripts": {
-    "develop": "npm --workspace ./sites/$npm_config_site run develop --if-present",
-    "build": "npm --workspace ./sites/$npm_config_site run build --if-present",
-    "predeploy": "npm run build --site=$npm_config_site",
-    "deploy": "npm exec --workspace ./sites/$npm_config_site -- gatsby-plugin-s3 deploy",
+    "develop": "npm --workspace ./sites/your-lit-job run develop --if-present",
+    "build": "npm --workspace ./sites/./sites/your-lit-job run build --if-present",
+    "predeploy": "npm run build --site=./sites/your-lit-job",
+    "deploy": "npm exec --workspace ./sites/./sites/your-lit-job -- gatsby-plugin-s3 deploy",
     "preview-deploy": "CONTENTFUL_PREVIEW=true npm run deploy",
-    "clean": "npm --workspace ./sites/$npm_config_site run clean --if-present && rm -rf coverage && npm run clean-install",
+    "clean": "npm --workspace ./sites/./sites/your-lit-job run clean --if-present && rm -rf coverage && npm run clean-install",
     "clean-install": "rm -rf package-lock.json && rm -rf node_modules && npm install",
     "jest": "jest",
     "lint:js": "npx eslint . --quiet",
