@@ -15,7 +15,7 @@ export const avatarList = [
   'skater',
   'street',
 ];
-
+// Comment
 function Avatar({ className, avatar }) {
   function findActive() {
     if (avatar) return avatarList.findIndex((item) => item === avatar);
