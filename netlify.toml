@@ -1,0 +1,7 @@
+[build]
+  base = "."
+  publish = "./sites/your-lit-job/public/"
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-gatsby"
