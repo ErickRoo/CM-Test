@@ -1,0 +1,104 @@
+@use '../styles/utils';
+
+.root {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.industry-image {
+  width: 100% !important;
+  height: 120px !important;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-bottom: 15px;
+
+  &,
+  img {
+    border-radius: utils.$border-radius-ty;
+  }
+}
+
+.link-industry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-title {
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 31.69px;
+  color: #ffffff;
+}
+
+.primary-image {
+  width: 100% !important;
+  height: 230px !important;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  &,
+  img {
+    border-radius: utils.$border-radius-ty utils.$border-radius-ty 0 0;
+  }
+}
+
+.blank-industry {
+  margin-block-start: 135px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: utils.$extrabold-weight;
+  line-height: 1.25em;
+  padding-top: 16px;
+  padding-bottom: 6px;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.tags {
+  margin-bottom: 7px;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+@include utils.bp-any(sm) {
+  .copy {
+    margin-left: 15px;
+    padding-bottom: 20px;
+  }
+
+  .tags {
+    font-size: 11px;
+  }
+
+  .blank-industry {
+    margin-top: 0;
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .copy {
+    padding: 0 20px 20px;
+  }
+
+  .tags {
+    font-size: 12px;
+  }
+}

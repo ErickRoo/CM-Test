@@ -1,0 +1,30 @@
+@import 'breakpoints';
+@import 'variables';
+
+@mixin dark-bg {
+  margin: 10px $section-content-margin;
+  overflow: hidden;
+  color: $color-white;
+  background: linear-gradient(to bottom, $color-section-bg-1 0%, $color-section-bg-2 100%);
+  border-radius: $section-content-border-radius;
+
+  @include narrow-desktop {
+    margin: $section-content-margin;
+  }
+}
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin dropdown {
+  display: block;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

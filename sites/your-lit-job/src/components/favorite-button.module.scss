@@ -1,0 +1,66 @@
+@use '../styles/utils';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  > path {
+    stroke-width: 1;
+  }
+}
+
+.button {
+  width: inherit;
+  height: inherit;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.corner {
+  position: absolute;
+  z-index: 2;
+  background-color: #0006;
+  border-radius: 50%;
+
+  .button {
+    width: unset;
+    height: unset;
+  }
+
+  .icon {
+    padding-top: 5px;
+  }
+}
+
+
+.sizeSmall {
+  &.corner {
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon {
+    width: 18px;
+  }
+}
+
+.sizeMedium {
+  &.corner {
+    top: 10px;
+    right: 10px;
+    width: 55px;
+    height: 55px;
+  }
+
+ .icon {
+    width: 26px;
+  }
+}
+

@@ -1,0 +1,43 @@
+@use '../styles/utils';
+
+.root {
+  @include utils.doodle-background;
+
+  display: flex;
+  flex-basis: 100%;
+  align-items: stretch;
+  justify-content: stretch;
+  min-height: 100%;
+  text-align: center;
+}
+
+.inner {
+  flex-grow: 1;
+  width: 100%;
+  min-height: 100%;
+  background: url('../assets/pages/contact/bg.jpg') right bottom no-repeat;
+}
+
+.container {
+  padding-top: 1px;
+}
+
+@include utils.bp-any(sm) {
+  .inner {
+    background-size: 375px auto;
+  }
+
+  .container {
+    padding-bottom: 275px;
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .inner {
+    background-size: 420px auto;
+  }
+
+  .container {
+    padding-bottom: 300px;
+  }
+}

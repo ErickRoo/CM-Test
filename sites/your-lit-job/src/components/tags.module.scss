@@ -1,0 +1,35 @@
+@use '../styles/utils';
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: utils.$black-weight;
+  line-height: 1.25em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  list-style: none;
+
+  a {
+    color: utils.$dark-red;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.tag {
+  &::after {
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    color: #000;
+    white-space: pre;
+    content: '|';
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}

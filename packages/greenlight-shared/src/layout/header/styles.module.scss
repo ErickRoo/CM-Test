@@ -1,0 +1,35 @@
+@import '../../styles/helpers';
+
+.Header {
+  position: fixed;
+  top: 0;
+  z-index: 2000;
+  display: block;
+  width: 100%;
+  height: 3.5rem;
+  background-color: $color-black;
+
+  .headerContainerInner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    svg {
+      width: 5.125rem;
+
+      path {
+        fill: $color-white;
+      }
+    }
+
+    @include tablet {
+      justify-content: flex-start;
+    }
+  }
+
+  @include tablet {
+    padding: 0 1.5rem;
+    background-color: transparent;
+  }
+}

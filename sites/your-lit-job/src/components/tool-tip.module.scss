@@ -1,0 +1,83 @@
+@use '../styles/utils';
+
+.root {
+  position: absolute;
+  left: 50%;
+  z-index: 500;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: utils.$extrabold-weight;
+  line-height: 1em;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  background-color: utils.$almost-black;
+  border-radius: 999px;
+
+  &[data-visible='false'] {
+    opacity: 0;
+  }
+
+  &[data-visible='true'] {
+    opacity: 1;
+  }
+
+  &::before {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 10px;
+    height: 8px;
+    content: '';
+    background: url('../assets/components/tool-tip/arrow.png') no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.inner {
+  /* placeholder */
+
+  /* Wrapper for future animation */
+}
+
+.positionTop {
+  top: 0;
+  transform: translate(-50%, calc(-100% - 7px));
+
+  &::before {
+    bottom: -7px;
+    transform: translate(-50%, 0) rotate(180deg);
+  }
+}
+
+.positionBottom {
+  bottom: 0;
+  transform: translate(-50%, calc(100% + 7px));
+
+  &::before {
+    top: -7px;
+    transform: translate(-50%, 0);
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root {
+    display: none !important;
+  }
+}
+
+@include utils.bp-any(md) {
+  .root {
+    font-size: 12px;
+  }
+}
+
+@include utils.bp-any(lg) {
+  .root {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,25 @@
+@use '../styles/utils';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: utils.$medium-weight;
+  color: utils.$blue;
+  text-decoration: none;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    vertical-align: sub;
+    fill: utils.$blue;
+    transform: rotate(90deg);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,16 @@
+@use '../styles/utils';
+
+.root {
+  font-weight: utils.$extrabold-weight;
+  text-align: center;
+
+  @include utils.bp-any(sm) {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  @include utils.bp-any(md, lg) {
+    margin-bottom: 5px;
+    font-size: 21px;
+  }
+}

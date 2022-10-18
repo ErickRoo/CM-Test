@@ -1,0 +1,162 @@
+@import '../../styles/helpers';
+
+@keyframes slideinleft {
+  0% {
+    transform: translateX(1000px) scale(1);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes slideinright {
+  0% {
+    transform: translateX(-1000px) scale(1);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.HeroWork {
+  position: relative;
+  height: 65vh; /* TODO: fix for mobile */
+  padding: 0;
+  margin: 0 auto;
+  overflow: hidden;
+
+  .inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .poster {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0.4;
+      transform: scale(1.05);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+    }
+
+    .overlay {
+      @include default-section-padding;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-gap: 0;
+      align-items: center;
+      height: 100%;
+
+      .buttonLeft {
+        display: none;
+
+        @include medium-up {
+          display: block;
+          grid-row: 1;
+          grid-column: 15 / 15;
+          cursor: pointer;
+          animation: fadein 1.25s;
+        }
+      }
+
+      .overlayInner {
+        display: flex;
+        grid-row: 1;
+        grid-column: 2 / 16;
+
+        .buttonRight {
+          display: none;
+
+          @include medium-up {
+            display: block;
+            margin-right: 6rem;
+            cursor: pointer;
+            animation: fadein 1.25s;
+          }
+        }
+
+        .eyebrow {
+          @include eyebrow;
+
+          display: block;
+          margin-bottom: 2.2rem;
+          color: #fff;
+        }
+
+        h2 {
+          @include heading-h1;
+        }
+
+        .description {
+          display: none;
+          margin-top: 2rem;
+
+          p {
+            @include body-text-p;
+
+            color: #fff;
+          }
+
+          @include xlarge-up {
+            display: block;
+          }
+        }
+
+        .button {
+          @include button-default;
+
+          display: inline-block;
+          margin-top: 3.3rem;
+        }
+
+        @include medium-up {
+          grid-column: 2 / 13;
+        }
+
+        @include xlarge-up {
+          grid-column: 2 / 9;
+        }
+      }
+    }
+  }
+
+  .animateLeft {
+    animation: slideinleft 0.3s;
+  }
+
+  .animateRight {
+    animation: slideinright 0.3s;
+  }
+
+  @include medium-up {
+    height: 75vh; /* TODO: fix for mobile */
+  }
+}

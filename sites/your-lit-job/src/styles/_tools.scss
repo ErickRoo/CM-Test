@@ -1,0 +1,70 @@
+// Tools – Globally used mixins and functions.
+@use 'settings';
+
+// See corresponding Javascript version in `src/utilrs/breakpoints.js`
+@forward '~@curiousmedia/breakpoint/src/_breakpoint.scss' as bp-* with (
+  $breakpoints: (
+    touch: '@media screen and (pointer: coarse)',
+    cursor: '@media screen and (pointer: fine)',
+    hover: '@media screen and (hover: hover)',
+    still: '@media screen and (prefers-reduced-motion)',
+    sm: '@media (max-width: 767px)',
+    md: '@media (min-width: 768px) and (max-width: 1024px)',
+    lg: '@media (min-width: 1025px)',
+  )
+);
+
+@mixin no-margin-overflow() {
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin doodle-background($path: '') {
+  $path: $path + '../assets/global/doodle-bg.jpg';
+
+  background: settings.$muted-blue url(#{$path}) center top repeat-x;
+  background-size: 280px auto;
+}
+
+@function get-skills-colors() {
+  $colors: (
+    'artistic': settings.$skill-artistic,
+    'conventional': settings.$skill-conventional,
+    'enterprising': settings.$skill-enterprising,
+    'investigative': settings.$skill-investigative,
+    'realistic': settings.$skill-realistic,
+    'social': settings.$skill-social,
+  );
+
+  @return $colors;
+}
+
+@mixin skill-cards() {
+  $colors: (
+    'artistic': settings.$skill-artistic,
+    'conventional': settings.$skill-conventional,
+    'enterprising': settings.$skill-enterprising,
+    'investigative': settings.$skill-investigative,
+    'realistic': settings.$skill-realistic,
+    'social': settings.$skill-social,
+  );
+
+  @each $key, $value in $colors {
+    &__#{$key} {
+      border: $value solid 10px;
+
+      h3,
+      strong {
+        color: $value;
+      }
+    }
+  }
+
+  background-color: #fff;
+  border-radius: settings.$border-radius-md;
+}

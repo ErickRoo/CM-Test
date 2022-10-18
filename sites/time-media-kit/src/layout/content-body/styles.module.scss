@@ -1,0 +1,15 @@
+@import '../../styles/helpers';
+
+.ContentBody {
+  display: flex;
+  flex-direction: column;
+  max-width: 1350px;
+  margin: 115px auto 30px;
+  background: #fff;
+  border-radius: 18.75px;
+  box-shadow: 0 3.75px 37.5px 0 rgba(51 51 102 / 10%);
+
+  @include narrow-desktop {
+    margin: $content-body-margin auto;
+  }
+}

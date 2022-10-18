@@ -1,0 +1,21 @@
+version: '2' # required to adjust maintainability checks
+plugins:
+  duplication:
+    enabled: true
+    exclude_patterns:
+      - '**/*.test.js'
+  eslint:
+    enabled: true
+    channel: 'eslint-7'
+    config:
+      ignore_warnings: true
+  nodesecurity:
+    enabled: true
+  stylelint:
+    # Temporarily disable stylelint plugin until
+    # Code Climate's Stylelint engine
+    # supports the latest version of `stylelint`(v14)
+    # and `stylelint-config-standard-scss`
+    enabled: false
+    exclude_patterns:
+      - '**/*.html'

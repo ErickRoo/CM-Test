@@ -1,0 +1,103 @@
+@use '../../../styles/utils';
+
+.root {
+  flex-basis: calc(100% - 20px);
+  min-height: 460px;
+  margin: utils.$mar-sm utils.$mar-sm utils.$mar-xl;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: calc(353px - 20px);
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  background-color: #fff;
+  border: 10px solid #fff;
+  border-radius: utils.$border-radius-sm;
+  box-shadow: 0 10px 20px 0 rgb(0 0 0 / 5%);
+
+  > div[data-gatsby-image-wrapper] {
+    max-width: 160px;
+    height: auto;
+    margin: utils.$mar-lg auto;
+  }
+}
+
+.complete {
+  border-color: #45faa0;
+
+  > svg {
+    display: block;
+  }
+}
+
+.hasProgress {
+  opacity: 1;
+}
+
+.inactive,
+.noProgress {
+  background-color: #f7f8fb;
+  border-color: #f7f8fb;
+
+  > * {
+    opacity: 0.5;
+
+    &:nth-child(1),
+    &:nth-child(4) {
+      opacity: 1;
+
+      > ul > li > section {
+        background-color: #eee;
+      }
+    }
+  }
+}
+
+.title {
+  margin-bottom: utils.$mar-lg;
+  font-size: 21px;
+  font-weight: utils.$extrabold-weight;
+  line-height: 21px;
+}
+
+.description {
+  width: 80%;
+  min-height: 90px;
+  margin: 0 0 utils.$mar-lg;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.complete-icon {
+  position: absolute;
+  bottom: -26px;
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: utils.$pad-sm;
+  background-color: #45faa0;
+  border-radius: 50%;
+}
+
+@media (min-width: 600px) {
+  .root {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .root {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .root {
+    flex-basis: calc(33.33% - 20px);
+  }
+}

@@ -1,0 +1,26 @@
+@use '../../../styles/utils';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+
+  svg {
+    width: 150px;
+    height: 150px;
+
+    circle {
+      stroke: #000;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 0;
+      stroke-width: 15;
+    }
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: utils.$semibold-weight;
+  }
+}

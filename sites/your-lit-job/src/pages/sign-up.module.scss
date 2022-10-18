@@ -1,0 +1,55 @@
+@use '../styles/utils';
+
+.root {
+  @include utils.doodle-background;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+}
+
+.selectButton {
+  align-self: flex-end;
+  width: 50px;
+  height: 50px;
+  border: none;
+
+  &L {
+    background: url('../assets/components/profile/arrowL.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &R {
+    background: url('../assets/components/profile/arrowR.png') no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.avatarSelect {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 23px;
+}
+
+.newsletter {
+  label {
+    display: flex;
+  }
+
+  input {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  span {
+    display: block;
+    flex-grow: 1;
+  }
+}
+
+.avatarHelper {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-size: 18px;
+  text-align: center;
+}

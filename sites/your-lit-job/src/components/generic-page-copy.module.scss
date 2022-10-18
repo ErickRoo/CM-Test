@@ -1,0 +1,8 @@
+@use '../styles/utils';
+
+.root {
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: utils.$book-weight;
+  text-align: center;
+}

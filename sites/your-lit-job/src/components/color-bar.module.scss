@@ -1,0 +1,81 @@
+@use '../styles/utils';
+
+.root {
+  height: utils.$color-bar-height;
+}
+
+.sticky {
+  position: sticky;
+  z-index: 998;
+}
+
+.bands {
+  display: flex;
+}
+
+.band {
+  display: block;
+  flex-grow: 1;
+  height: utils.$color-bar-height;
+}
+
+.color {
+  .band {
+    display: none !important;
+  }
+}
+
+.band:nth-child(1) {
+  background-color: #0f9fff;
+}
+
+.band:nth-child(2) {
+  background-color: #0053d7;
+}
+
+.band:nth-child(3) {
+  background-color: #00b85f;
+}
+
+.band:nth-child(4) {
+  background-color: #00714b;
+}
+
+.band:nth-child(5) {
+  background-color: #c086f4;
+}
+
+.band:nth-child(6) {
+  background-color: #8a19e1;
+}
+
+.band:nth-child(7) {
+  background-color: #ff2630;
+}
+
+.band:nth-child(8) {
+  background-color: #b51a21;
+}
+
+@include utils.bp-any(sm) {
+  .sticky {
+    top: 60px;
+
+    @media print {
+      top: 0;
+    }
+  }
+
+  .band:nth-child(5),
+  .band:nth-child(6),
+  .band:nth-child(7),
+  .band:nth-child(8) {
+    display: none;
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .sticky {
+    top: 0;
+  }
+}

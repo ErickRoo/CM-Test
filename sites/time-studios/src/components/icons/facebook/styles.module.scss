@@ -1,0 +1,18 @@
+@import '../../../styles/helpers';
+
+svg.IconFacebook {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linejoin: round;
+  stroke-miterlimit: 2;
+
+  path {
+    fill: #fff;
+  }
+
+  &:hover {
+    path {
+      fill: $color-time-red;
+    }
+  }
+}

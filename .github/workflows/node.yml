@@ -1,0 +1,54 @@
+# This workflow will do a clean install of node dependencies, cache/restore
+# them, build the source code and run tests(as of now, only on Node v16)
+# This will also send test coverage to Code Climate
+
+name: Node.js
+
+# Run on every commit push
+on:
+  push:
+    branches:
+      - '**'
+      # Ignore the `main` and `sandbox` branches
+      # since pushes to those branches are handled by the
+      # `deployment` workflow
+      - '!main'
+      - '!sandbox'
+    tags:
+      - '!*' # Do not execute on tags
+
+  # Allows this workflow to be reusable in another
+  # workflow, e.g. for a Deployment workflow
+  workflow_call:
+    secrets:
+      CC_TEST_REPORTER_ID:
+        required: true
+
+jobs:
+  build_and_test:
+    name: Build & Test 🧪
+    runs-on: ubuntu-latest
+    env:
+      # Required for the Code Climate test reporter
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      GIT_COMMIT_SHA: ${{ github.sha }}
+    steps:
+      # Checkout the repo
+      # https://github.com/actions/checkout
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      # See https://github.com/actions/setup-node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install packages 📦 & run tests 🧪
+        run: npm install-ci-test
+
+      - name: Send test coverage to Code Climate
+        uses: paambaati/codeclimate-action@v3.0.0
+        with:
+          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov

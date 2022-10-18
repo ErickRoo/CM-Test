@@ -1,0 +1,118 @@
+@use '../styles/utils';
+
+.root {
+  padding-bottom: 1px;
+  background-color: utils.$muted-blue;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  background-color: #ffd43f;
+  background-image: url('../assets/pages/index/header.jpg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.headerPlay {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: utils.$extrabold-weight;
+  color: #fff;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 30%);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  appearance: none;
+
+  &::before {
+    display: block;
+    content: '';
+    background: url('../assets/pages/index/play-white.png') no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.posts {
+  @include utils.no-margin-overflow;
+  @include utils.doodle-background;
+
+  width: 100%;
+  padding-bottom: 1px;
+  opacity: 0;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.post {
+  margin: 15px;
+}
+
+.top {
+  padding-top: utils.$pad-md;
+}
+
+@include utils.bp-any(lg, md) {
+  .header {
+    height: 314px;
+  }
+
+  .headerPlay {
+    &::before {
+      width: 23px;
+      height: 27px;
+      margin-right: 4px;
+    }
+  }
+
+  .posts {
+    padding-top: 60px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .header {
+    &::before {
+      display: block;
+      padding-top: 37.3333%;
+      content: '';
+    }
+  }
+
+  .headerPlay {
+    &::before {
+      width: 20px;
+      height: 24px;
+      margin-right: 4px;
+    }
+  }
+
+  .posts {
+    padding-top: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header {
+    height: auto !important;
+
+    &::before {
+      display: block;
+      padding-top: 28.0357%;
+      content: '';
+    }
+  }
+
+  .posts {
+    padding-top: 60px;
+  }
+}

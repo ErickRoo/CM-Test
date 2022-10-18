@@ -1,0 +1,90 @@
+@import '../../styles/helpers';
+
+.NavDesktop {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: none;
+  height: $nav-height;
+  margin-bottom: 65px;
+
+  ul.items {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: $nav-height;
+    padding: 0 30px;
+    margin: 0;
+    font-size: 1rem;
+    background: $color-white;
+    border-top: 1px solid $color-grey;
+    border-bottom: 1px solid $color-grey;
+
+    li {
+      margin-right: 40px;
+
+      svg {
+        height: 30px;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: color 0.3s;
+
+        :global(.material-icons),
+        :global(.material-icons-outlined) {
+          margin-right: 7px;
+          font-size: 1rem;
+          color: $color-light-red;
+        }
+
+        .itemLabel {
+          margin-top: $line-height-offset;
+        }
+
+        &:hover {
+          color: $color-light-red;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &.sticky {
+    ul.items {
+      position: fixed;
+      top: 0;
+      width: calc(100% - 75px);
+      max-width: 1440px;
+    }
+  }
+
+  @include narrow-desktop {
+    display: block;
+  }
+
+  @include wide-desktop {
+    ul.items {
+      font-size: 1.125rem;
+      letter-spacing: normal;
+
+      li {
+        margin-right: 50px;
+
+        a {
+          :global(.material-icons),
+          :global(.material-icons-outlined) {
+            margin-right: 8px;
+            font-size: 1.0625rem;
+          }
+        }
+      }
+    }
+  }
+}

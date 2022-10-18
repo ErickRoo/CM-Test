@@ -1,0 +1,75 @@
+@use '../styles/utils';
+
+.root {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  border-radius: utils.$border-radius-ty;
+}
+
+.primary-image {
+  &,
+  img {
+    border-top-left-radius: utils.$border-radius-ty;
+    border-top-right-radius: utils.$border-radius-ty;
+  }
+}
+
+.title {
+  font-weight: utils.$extrabold-weight;
+  line-height: 1.25em;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.tags {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: utils.$black-weight;
+  color: #b51a21;
+  text-transform: uppercase;
+}
+
+.date {
+  display: block;
+  margin-bottom: 7px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: utils.$black-weight;
+  line-height: 1;
+  color: utils.$blue;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copy {
+  padding: 18px 20px 28px;
+}
+
+.description {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@include utils.bp-any(md, lg) {
+  .tags {
+    font-size: 12px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .title {
+    font-size: 21px;
+  }
+
+  .tags {
+    font-size: 14px;
+  }
+}

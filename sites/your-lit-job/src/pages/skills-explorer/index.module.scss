@@ -1,0 +1,39 @@
+@use '../../styles/utils';
+
+.root {
+  font-family: 'Montserrat', sans-serif;
+  background-color: utils.$muted-blue;
+}
+
+.header {
+  height: 140px;
+
+  &__w-progress-bar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    > section > div:first-child {
+      min-height: 260px;
+    }
+  }
+}
+
+.explorer {
+  position: relative;
+  display: flex;
+}
+
+@include utils.bp-any(sm) {
+  .header {
+    height: 70px;
+
+    &__w-progress-bar {
+      top: 60px;
+
+      > section > div:first-child {
+        min-height: 140px;
+      }
+    }
+  }
+}

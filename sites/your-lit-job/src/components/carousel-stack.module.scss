@@ -1,0 +1,106 @@
+@use '../styles/utils';
+
+.root {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title {
+  margin-bottom: utils.$mar-xl;
+  font-size: 28px;
+  font-weight: utils.$extrabold-weight;
+  text-align: center;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 300px;
+  padding: 18px;
+  margin: auto;
+  list-style: none;
+  perspective: 600px;
+  transform-style: preserve-3d;
+}
+
+.carousel-item {
+  position: absolute;
+  bottom: 20px;
+  z-index: 4;
+  width: 512px;
+  min-width: 100px;
+  height: 512px;
+  min-height: 100px;
+  background-color: utils.$skill-background-color;
+  border: 10px solid utils.$skill-foreground-color;
+  border-radius: 28px;
+
+  > *,
+  img {
+    border-radius: 18px;
+  }
+}
+
+.buttons {
+  position: absolute;
+  top: 52.4%;
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 686px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+
+  & > button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 50%;
+
+    &:first-child {
+      background: url('../assets/components/carousel/arrow-left.png');
+      background-size: contain;
+    }
+
+    &:last-child {
+      background: url('../assets/components/carousel/arrow-right.png');
+      background-size: contain;
+    }
+  }
+}
+
+@include utils.bp-any(md) {
+  .carousel-item {
+    width: 428px;
+    height: 428px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .carousel-item {
+    width: 428px;
+    height: 428px;
+  }
+
+  .buttons {
+    top: unset;
+    bottom: -70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    width: calc(100% - 36px);
+    height: auto;
+    min-height: 80vw;
+  }
+}

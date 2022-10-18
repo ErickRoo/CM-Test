@@ -1,0 +1,129 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../../../styles/utils';
+
+$left-y: 250px, 300px, 185px, 310px;
+$left-x: 75%, 50%, 20%, 10%;
+$left-position: (
+  top: $left-y,
+  right: $left-x,
+);
+$right-y: 290px, 190px, 305px, 240px;
+$right-x: 10%, 20%, 50%, 75%;
+$right-position: (
+  top: $right-y,
+  left: $right-x,
+);
+
+.root {
+  position: relative;
+  margin-bottom: 27.5vh;
+}
+
+.bottomText {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+
+  > div {
+    padding: 200px 0;
+
+    h2 {
+      width: fit-content;
+      margin-right: auto;
+      margin-bottom: utils.$mar-xl;
+      margin-left: auto;
+      font-size: 48px;
+      font-weight: utils.$extrabold-weight;
+      line-height: 56px;
+      color: utils.$almost-black;
+      white-space: break-spaces;
+    }
+  }
+}
+
+.icons {
+  &__left {
+    order: 1;
+
+    img {
+      $listt: map.get($left-position, 'top');
+      $listr: map.get($left-position, 'right');
+      @for $pos from 1 through 4 {
+        &:nth-child(#{$pos}) {
+          top: list.nth($listt, $pos);
+          right: list.nth($listr, $pos);
+        }
+      }
+    }
+  }
+
+  &__right {
+    order: 3;
+
+    img {
+      $listt: map.get($right-position, 'top');
+      $listl: map.get($right-position, 'left');
+      @for $pos from 1 through 4 {
+        &:nth-child(#{$pos}) {
+          top: list.nth($listt, $pos);
+          left: list.nth($listl, $pos);
+        }
+      }
+    }
+  }
+}
+
+.animation {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  > section {
+    position: relative;
+    width: calc((100% - 240px) / 2);
+    max-width: 280px;
+
+    img {
+      position: absolute;
+      max-width: 105px;
+    }
+  }
+
+  &::after {
+    position: relative;
+    order: 2;
+    width: 240px;
+    content: '';
+  }
+}
+
+@include utils.bp-any(sm) {
+  .icons {
+    &__left img {
+      @for $pos from 1 through 4 {
+        &:nth-child(#{$pos}) {
+          top: $pos * 20% - 10%;
+          right: 10%;
+        }
+      }
+    }
+
+    &__right img {
+      @for $pos from 1 through 4 {
+        &:nth-child(#{$pos}) {
+          top: $pos * 20% - 10%;
+          left: 10%;
+        }
+      }
+    }
+  }
+
+  .bottomText h2::before {
+    content: unset;
+  }
+}

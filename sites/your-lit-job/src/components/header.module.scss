@@ -1,0 +1,193 @@
+@use '../styles/utils';
+
+.logo {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.avatarButton {
+  padding: 0;
+}
+
+@include utils.bp-any(sm, md) {
+  .profile {
+    display: none !important;
+  }
+
+  .avatarButton {
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    appearance: none;
+
+    .profileAvatar {
+      width: 44px;
+      height: 44px;
+    }
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root {
+    position: relative;
+    width: 100%;
+  }
+
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 120px;
+    transform: translateY(-50%);
+  }
+
+  .profileName {
+    display: none;
+  }
+
+  .profileNav {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    transform: translateY(-50%);
+  }
+
+  .search {
+    display: block;
+    width: 26px;
+    height: 26px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: calc(100vw - 185px);
+      display: block;
+      width: 40px;
+      height: 100%;
+      content: '';
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      background: url('../assets/components/nav/icon-search-up.png') no-repeat center;
+      background-size: 26px;
+      opacity: 1;
+    }
+
+    &::after {
+      background: url('../assets/components/nav/icon-search-over.png') no-repeat center;
+      background-size: 26px;
+      opacity: 0;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 0;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  .profileIcon {
+    display: block;
+    width: 26px;
+    height: 26px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: -15px;
+      display: block;
+      width: 40px;
+      height: 100%;
+      content: '';
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      background: url('../assets/components/profile/icon-profile-up.png') no-repeat center;
+      background-size: 26px;
+      opacity: 1;
+    }
+
+    &::after {
+      background: url('../assets/components/profile/icon-profile-over.png') no-repeat center;
+      background-size: 26px;
+      opacity: 0;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 0;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@include utils.bp-any(lg) {
+  .root {
+    padding-top: 5px;
+  }
+
+  .logo {
+    width: 260px;
+    margin-bottom: 25px;
+  }
+
+  .profileToggle {
+    display: none;
+  }
+
+  .profile {
+    display: flex !important;
+  }
+}
+
+@include utils.bp-any(md) {
+  .logo {
+    width: 120px;
+    margin-bottom: 15px;
+  }
+
+  .profileToggle {
+    padding: 15px;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-weight: utils.$extrabold-weight;
+    text-align: center;
+    background-color: #eff2f8;
+    border-radius: utils.$border-radius-md;
+  }
+
+  .profileAvatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profileName {
+    width: 100%;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    overflow: hidden;
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

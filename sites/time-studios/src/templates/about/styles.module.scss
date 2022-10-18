@@ -1,0 +1,40 @@
+@import '../../styles/helpers';
+
+.About {
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: $header-offset-mobile;
+  overflow: hidden;
+
+  .content {
+    padding: 0 12px;
+
+    .text {
+      /* span is added by Markup component */
+      & > span {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        grid-gap: 0;
+      }
+
+      p {
+        @include body-text-p-strong;
+
+        grid-column: 1 / 17;
+        text-align: left;
+
+        @include medium-up {
+          grid-column: 5 / 13;
+        }
+      }
+    }
+
+    @include medium-up {
+      padding: 0;
+    }
+  }
+
+  @include medium-up {
+    margin-top: $header-offset-desktop;
+  }
+}

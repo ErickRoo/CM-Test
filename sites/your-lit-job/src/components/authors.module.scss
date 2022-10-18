@@ -1,0 +1,6 @@
+@use '../styles/utils';
+
+.root {
+  font-weight: utils.$extrabold-weight;
+  letter-spacing: 0.05em;
+}

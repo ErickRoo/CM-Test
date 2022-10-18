@@ -1,0 +1,47 @@
+@use '../../../styles/utils';
+
+.root {
+  border-bottom: solid 1px #d3d6db;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: utils.$pad-xl utils.$pad-md;
+    overflow: hidden;
+
+    p {
+      padding-bottom: utils.$pad-md;
+      margin: 0;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: utils.$semibold-weight;
+    }
+  }
+}
+
+.bar {
+  width: 90%;
+  height: 12px;
+  background-color: utils.$almost-black;
+  border-radius: 12px;
+
+  hr {
+    width: 10px;
+    height: inherit;
+    margin: 0;
+    background-color: #47faa0;
+    border: 2px solid;
+    border-radius: 10px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root > div {
+    padding: 0 utils.$pad-sm utils.$pad-md;
+  }
+
+  .bar {
+    width: 90%;
+  }
+}

@@ -1,0 +1,67 @@
+@use '../styles/utils';
+
+.copy {
+  width: 100%;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.image {
+  height: auto;
+
+  &,
+  img {
+    border-radius: utils.$border-radius-ty;
+  }
+}
+
+.description {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: utils.$black-weight;
+}
+
+.source {
+  font-family: 'Montserrat', sans-serif;
+  color: #848588;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fill {
+  .image {
+    width: 100%;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root {
+    line-height: 1.5;
+  }
+
+  .description {
+    margin-top: 1em;
+    font-size: 12px;
+  }
+
+  .source {
+    margin-top: 1em;
+    font-size: 10px;
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .root {
+    line-height: 1.2;
+  }
+
+  .description {
+    display: inline;
+    margin-right: 1em;
+    font-size: 14px;
+  }
+
+  .source {
+    display: inline;
+    font-size: 12px;
+  }
+}

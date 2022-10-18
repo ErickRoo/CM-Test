@@ -1,0 +1,40 @@
+@use '../../../styles/utils';
+
+.root {
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+}
+
+.details {
+  position: sticky;
+  top: 140px;
+  z-index: 5;
+}
+
+.survey {
+  width: 100%;
+
+  form {
+    padding-top: 80px;
+    overflow: hidden;
+  }
+}
+
+.modal {
+  /* placeholder */
+}
+
+@include utils.bp-any(sm) {
+  .details {
+    top: 130px;
+  }
+
+  .survey {
+    background-position: 0 200px;
+    background-size: 100vw;
+  }
+}

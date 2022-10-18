@@ -1,0 +1,194 @@
+@use 'utils';
+
+// Objects – Style rules for elements responsible for layout or structuring.
+/* stylelint-disable-next-line */
+#___gatsby {
+  height: 100%;
+}
+
+#gatsby-focus-wrapper {
+  height: 100%;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+
+  &.container-xs {
+    max-width: 440px;
+  }
+
+  &.container-sm {
+    max-width: 620px;
+  }
+
+  &.container-md {
+    max-width: 760px;
+  }
+
+  &.container-lg {
+    max-width: 880px;
+  }
+
+  &.container-pad-md {
+    padding: utils.$pad-md;
+  }
+
+  &.container-pad-lg {
+    padding: utils.$pad-lg;
+  }
+
+  &.container-hpad-md {
+    padding-right: utils.$pad-md;
+    padding-left: utils.$pad-md;
+  }
+
+  &.container-vpad-md {
+    padding-top: utils.$pad-md;
+    padding-bottom: utils.$pad-md;
+  }
+
+  &.container-mar-md {
+    margin: utils.$mar-md;
+  }
+
+  &.container-hmar-md {
+    margin-right: utils.$mar-md;
+    margin-left: utils.$mar-md;
+  }
+
+  &.container-vmar-md {
+    margin-top: utils.$mar-md;
+    margin-bottom: utils.$mar-md;
+  }
+}
+
+.image-shadow {
+  &.image-shadow-purple {
+    box-shadow: 0 4px 0 utils.$purple;
+  }
+
+  &.image-shadow-aqua {
+    box-shadow: 0 4px 0 utils.$aqua;
+  }
+}
+
+// badge-test styling
+[data-badge-test='true'] {
+  ul {
+    margin-left: 1em;
+  }
+}
+
+/**
+ * Forms
+ */
+.form-label {
+  display: block;
+  margin-bottom: 0.25em;
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: utils.$extrabold-weight;
+  line-height: 1.25em;
+  text-align: left;
+
+  & > small,
+  & > a > small {
+    margin-left: 0.5em;
+    font-size: 1em;
+    font-weight: utils.$book-weight;
+  }
+
+  & > a {
+    float: right;
+    color: utils.$light-blue;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.form-control {
+  display: block;
+
+  &[type='email'],
+  &[type='text'],
+  &[type='password'],
+  &[type='number'] {
+    width: 100%;
+    height: 60px;
+    padding: 0 18px;
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-size: 26px;
+    font-weight: utils.$extrabold-weight;
+    color: #fff;
+    background-color: utils.$almost-black;
+    border: none;
+    border-radius: 6px;
+  }
+
+  &:autofill {
+    background-color: utils.$almost-black !important;
+    -webkit-box-shadow: 0 0 0 1000px utils.$almost-black inset !important; /* stylelint-disable-line */
+    -webkit-text-fill-color: white !important; /* stylelint-disable-line */
+  }
+
+  &[type='number'].hide-steps {
+    -moz-appearance: textfield; /* stylelint-disable-line */
+
+    &::-webkit-outer-spin-button, /* stylelint-disable-line */
+    &::-webkit-inner-spin-button { /* stylelint-disable-line */
+      appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.form-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form-check {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  clear: both;
+
+  .form-check-input {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  .form-check-label {
+    clear: both;
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-weight: utils.$book-weight;
+    color: utils.$almost-black;
+  }
+}
+
+.form-select {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  padding: 0 18px;
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-size: 26px;
+  font-weight: utils.$extrabold-weight;
+  color: #fff;
+  background-color: utils.$almost-black;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  border: none;
+  border-radius: 6px;
+  appearance: none;
+}

@@ -1,0 +1,120 @@
+@use '../../styles/utils';
+
+.root {
+  @include utils.doodle-background('../');
+
+  height: 100%;
+  text-align: center;
+}
+
+.intro {
+  max-width: 620px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.downloads {
+  display: flex;
+  justify-content: center;
+}
+
+.download {
+  text-align: left;
+}
+
+.download-img {
+  margin-bottom: 20px;
+  box-shadow: 0 10px 20px 0 rgb(0 0 0 / 5%);
+
+  &,
+  img {
+    border-radius: utils.$border-radius-ty;
+  }
+}
+
+.download-img::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 68px;
+  height: 68px;
+  content: '';
+  background: url('../../assets/pages/families/resources/download-btn.png') no-repeat center center;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+}
+
+.downloads-header {
+  font-weight: utils.$extrabold-weight;
+}
+
+.download-title {
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: utils.$extrabold-weight;
+}
+
+.download-text {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+@include utils.bp-any(md, lg) {
+  .intro {
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+
+  .downloads-header,
+  .download-title {
+    font-size: 21px;
+  }
+
+  .downloads {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+  .download {
+    flex: 50% 0 0;
+    margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .downloads-header {
+    margin-bottom: 30px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .downloads {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .download {
+    margin-bottom: 60px;
+  }
+
+  .downloads-header {
+    margin-bottom: 24px;
+  }
+
+  .intro {
+    margin: 0 auto 45px;
+  }
+
+  .downloads-header,
+  .download-title {
+    font-size: 18px;
+  }
+
+  .download-title {
+    margin-bottom: 8px;
+  }
+}

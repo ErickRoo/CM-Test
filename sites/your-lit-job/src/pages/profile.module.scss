@@ -1,0 +1,67 @@
+@use '../styles/utils';
+
+.root {
+  @include utils.doodle-background;
+
+  font-family: 'Montserrat', 'Arial', sans-serif;
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    appearance: none;
+  }
+}
+
+.root .body {
+  padding-bottom: 30px;
+  text-align: center;
+  background-color: utils.$muted-blue;
+
+  h3 {
+    margin-top: 1em !important;
+    font-weight: utils.$extrabold-weight;
+
+    & + * {
+      margin-top: 0;
+    }
+  }
+}
+
+.bg {
+  background: #eff2f8;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+}
+
+.selectButton {
+  align-self: flex-end;
+  width: 50px;
+  height: 50px;
+
+  &L {
+    background: url('../assets/components/profile/arrowL.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &R {
+    background: url('../assets/components/profile/arrowR.png') no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.displayName {
+  margin-bottom: 30px;
+  font-size: 26px;
+  font-weight: utils.$extrabold-weight;
+  text-align: center;
+}
+
+.avatarSelect {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,56 @@
+@use '../styles/utils';
+
+.root {
+  @include utils.no-margin-overflow;
+
+  // Font styles
+  b,
+  strong {
+    // Styling placeholder
+  }
+
+  i,
+  em {
+    // Styling placeholder
+  }
+
+  // Links
+  a {
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Paragraphs
+  p {
+    // Styling placeholder
+  }
+
+  // Lists
+  ul {
+    li {
+      // Styling placeholder
+    }
+  }
+
+  ol {
+    li {
+      // Styling placeholder
+    }
+  }
+
+  // Blockquote
+  blockquote {
+    font-family: 'Montserrat', sans-serif; // Styling placeholder
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

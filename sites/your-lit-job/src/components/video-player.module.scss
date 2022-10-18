@@ -1,0 +1,52 @@
+@use 'sass:math';
+@use '../styles/utils';
+
+.root {
+  position: relative;
+  display: block;
+
+  &.rounded {
+    & > div:first-child {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: utils.$border-radius-ty;
+    }
+  }
+
+  &.roundedTop {
+    & > div:first-child {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: utils.$border-radius-ty utils.$border-radius-ty 0 0;
+    }
+  }
+
+  &.roundedTopMed {
+    & > div:first-child {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: utils.$border-radius-md utils.$border-radius-md 0 0;
+    }
+  }
+
+  &::before {
+    display: block;
+    padding-top: math.percentage(math.div(9, 16));
+    content: '';
+  }
+}

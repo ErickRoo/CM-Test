@@ -1,0 +1,171 @@
+# Deployment
+#
+# This Github Workflow builds and deploys Greenlight Gatsby preview sites
+# under the `sites/` directory. This workflow can also be triggered
+# manually via the GitHub Actions tab on GitHub. It currently deploys
+# to our QA environment (qa.time.com or qa.timeforkids.com), but we may
+# want to add a staging environment in the future.
+# see https://github.com/timedotcom/greenlight/actions
+
+name: Preview Deployment 🚀
+
+on:
+  # Manually run the workflow when triggered via the Actions tab on GitHub
+  # see https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+  workflow_dispatch:
+    inputs:
+      site:
+        type: choice
+        description: Site to deploy
+        required: true
+        options:
+          - time-studios
+          - your-hot-job
+          - time-media-kit
+          - afghan-women
+
+  # Repository Dispatch acts as GitHub Actions’s way of interfacing with webhooks.
+  # For this repo, we want to deploy whenever a site is published in Contentful.
+  repository_dispatch:
+    types: [contentful.preview-deploy]
+
+# Top-level environment variables
+env:
+  APP_ENV: qa
+  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+  AWS_S3_BUCKET: 'tusallc-test-time-tfk-greenlight-qa'
+  AWS_ACCESS_KEY_ID: ${{ secrets.GH_WORKFLOW_DEV_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.GH_WORKFLOW_DEV_AWS_SECRET_ACCESS_KEY }}
+  BASE_URL: 'https://qa.time.com'
+  TFK_BASE_URL: 'https://qa.timeforkids.com'
+
+  # YHJ
+  GATSBY_YLJ_FIREBASE_API_KEY: ${{ secrets.YHJ_PROD_FIREBASE_API_KEY }}
+  GATSBY_YLJ_FIREBASE_AUTH_DOMAIN: ${{ secrets.YHJ_PROD_FIREBASE_AUTH_DOMAIN }}
+  GATSBY_YLJ_FIREBASE_DATABASE_URL: ${{ secrets.YHJ_PROD_FIREBASE_DATABASE_URL }}
+  GATSBY_YLJ_FIREBASE_PROJECT_ID: ${{ secrets.YHJ_DEV_FIREBASE_PROJECT_ID }}
+  GATSBY_YLJ_FIREBASE_STORAGE_BUCKET: ${{ secrets.YHJ_DEV_FIREBASE_STORAGE_BUCKET }}
+  GATSBY_YLJ_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.YHJ_PROD_FIREBASE_MESSAGING_SENDER_ID }}
+  GATSBY_YLJ_FIREBASE_APP_ID: ${{ secrets.YHJ_PROD_FIREBASE_APP_ID }}
+  GATSBY_YLJ_LYTICS_TAG_SRC: ${{ secrets.YHJ_PROD_LYTICS_TAG_SRC }}
+
+  # Contentful
+  CONTENTFUL_ENVIRONMENT: 'master'
+
+jobs:
+  # The `pre-deploy` job builds and run tests before deploying
+  pre-deploy:
+    name: Pre-Deploy
+    uses: ./.github/workflows/node.yml
+    secrets:
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+  deploy:
+    name: Deploy 🚀
+    runs-on: ubuntu-latest
+    needs: pre-deploy # this jobs needs the `install` job above to finish
+
+    # IMPORTANT: the workflow must have write access to all scopes, including deployments.
+    # Otherwise the chrnorm/deployment-action and chrnorm/deployment-status GitHub Actions
+    # below will fail.
+    permissions: write-all
+    steps:
+      # Checkout the repo
+      # https://github.com/actions/checkout
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      # See https://github.com/actions/setup-node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install npm dependencies 📦
+        run: npm ci
+
+      - name: Set Site Environment Variables
+        run: |
+          if [[ ("${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.site }}" == "time-studios") || \
+             ("${{ github.event_name }}" == "repository_dispatch" && "${{ github.event.client_payload.site }}" == "time-studios") ]];
+          then
+            echo "SITE_PROJECT=time-studios" >> $GITHUB_ENV
+            echo "SITE_ROUTE=/studios" >> $GITHUB_ENV
+            echo "CONTENTFUL_ACCESS_TOKEN=${{ secrets.STUDIOS_CONTENTFUL_PREVIEW_ACCESS_TOKEN }}" >> $GITHUB_ENV
+          elif [[ ("${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.site }}" == "your-hot-job") || \
+             ("${{ github.event_name }}" == "repository_dispatch" && "${{ github.event.client_payload.site }}" == "your-hot-job") ]];
+          then
+            echo "SITE_PROJECT=your-lit-job" >> $GITHUB_ENV
+            echo "SITE_ROUTE=/your-hot-job" >> $GITHUB_ENV
+            echo "CONTENTFUL_ACCESS_TOKEN=${{ secrets.YHJ_CONTENTFUL_PREVIEW_ACCESS_TOKEN }}" >> $GITHUB_ENV
+            echo "YHJ=true" >> $GITHUB_ENV
+          elif [[ ("${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.site }}" == "time-media-kit") || \
+             ("${{ github.event_name }}" == "repository_dispatch" && "${{ github.event.client_payload.site }}" == "time-media-kit") ]];
+          then
+            echo "SITE_PROJECT=time-media-kit" >> $GITHUB_ENV
+            echo "SITE_ROUTE=/mediakit" >> $GITHUB_ENV
+            echo "CONTENTFUL_ACCESS_TOKEN=${{ secrets.MEDIAKIT_CONTENTFUL_PREVIEW_ACCESS_TOKEN }}" >> $GITHUB_ENV
+          elif [[ ("${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.site }}" == "afghan-women") ]];
+          then
+            echo "SITE_PROJECT=afghan-women" >> $GITHUB_ENV
+            echo "SITE_ROUTE=/afghan-women-kabul-fall-anniversary" >> $GITHUB_ENV
+          fi
+
+      - name: Set App & AWS Environment Variables
+        run: |
+          if [ "${{ env.YHJ == 'true' }}" == "true" ]
+          then
+            echo "APP_ENV_URL=${{ env.TFK_BASE_URL }}${{ env.SITE_ROUTE }}" >> $GITHUB_ENV
+            echo "AWS_CLOUDFRONT_ID=${{ secrets.QA_TFK_AWS_CLOUDFRONT_ID }}" >> $GITHUB_ENV
+          else
+            echo "APP_ENV_URL=${{ env.BASE_URL }}${{ env.SITE_ROUTE }}" >> $GITHUB_ENV
+            echo "AWS_CLOUDFRONT_ID=${{ secrets.QA_AWS_CLOUDFRONT_ID }}" >> $GITHUB_ENV
+          fi
+
+      # Create a new deployment via Github's API,
+      # which will tie this workflow to the deployment
+      # and allow other integrated tools to be "aware"
+      # of the deployment.
+      - uses: chrnorm/deployment-action@releases/v2
+        name: Create GitHub deployment
+        id: deployment
+        with:
+          token: ${{ github.token }}
+          environment-url: ${{ env.APP_ENV_URL }}
+          environment: ${{ env.APP_ENV }}
+          initial-status: 'in_progress'
+          description: 'Preview Deployment - ${{ env.SITE_PROJECT }}'
+
+      # Deployment to S3 bucket via `deploy` npm script
+      - name: Deploy Gatsby site 🚀
+        run: |
+          echo "Deploying to ${{ env.APP_ENV }}"
+          npm run preview-deploy --site=${{ env.SITE_PROJECT }}
+
+      # Cloudfront cache invalidation
+      # The AWS CLI is already available in GitHub's hosted virtual environments
+      - name: Invalidate Cloudfront Cache
+        run: |
+          echo "Invalidating Cloudfront cache for: ${{ env.AWS_CLOUDFRONT_ID }}"
+          aws cloudfront create-invalidation --distribution-id ${{ env.AWS_CLOUDFRONT_ID }} --paths '${{ env.SITE_ROUTE }}*'
+
+      - name: Update deployment status (success) ✔️
+        if: success()
+        uses: chrnorm/deployment-status@releases/v2
+        with:
+          token: ${{ github.token }}
+          environment-url: ${{ env.APP_ENV_URL }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'success'
+          description: 'Preview Deployment - ${{ env.SITE_PROJECT }}'
+
+      - name: Update deployment status (failure) ❌
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v2
+        with:
+          token: ${{ github.token }}
+          environment-url: ${{ env.APP_ENV_URL }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'failure'
+          description: 'Preview Deployment - ${{ env.SITE_PROJECT }}'

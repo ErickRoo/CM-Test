@@ -1,0 +1,26 @@
+@use '../styles/utils';
+
+.window {
+  width: 320px;
+}
+
+@include utils.bp-any(sm) {
+  .window {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@include utils.bp-any(md) {
+  .window {
+    position: absolute;
+    top: 36px;
+    left: 10px;
+  }
+}
+
+@include utils.bp-any(lg) {
+  .root {
+    display: none;
+  }
+}

@@ -1,0 +1,170 @@
+@import '../../styles/helpers';
+
+.TeamModal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-team-modal;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s $ease-out-quad;
+  will-change: opacity;
+
+  &.visible {
+    pointer-events: all;
+    opacity: 1;
+    transition: opacity 0.25s $ease-out-quad;
+  }
+
+  .screen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $modal-screen-color;
+  }
+
+  .inner {
+    @include default-section-padding;
+
+    display: grid;
+    grid-template-columns: repeat(32, 1fr);
+    grid-gap: 0;
+    height: 100%;
+    padding: 0 12px;
+
+    .modalWrapper {
+      display: flex;
+      flex-direction: column;
+      grid-row: 1;
+      grid-column: 1 / 33;
+      justify-content: center;
+      pointer-events: none;
+      transition: transform 0.25s $ease-out-quint;
+      transform: scale(0.95);
+      will-change: transform;
+
+      &.visible {
+        transform: scale(1);
+      }
+
+      .modal {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 0;
+        padding: 20px;
+        pointer-events: all;
+        background-color: $color-background-dark;
+
+        .modalMug {
+          display: none;
+          grid-row: 1;
+          grid-column: 1 / 5;
+
+          .photo {
+            @include aspect-ratio(125%);
+
+            position: relative;
+
+            img {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          @include xlarge-up {
+            display: block;
+          }
+        }
+
+        .modalText {
+          grid-row: 1;
+          grid-column: 1 / 13;
+
+          &.noPhoto {
+            grid-column: 1 / 12;
+          }
+
+          h2 {
+            @include heading-h2;
+
+            margin-bottom: 5px;
+          }
+
+          span.title {
+            @include bio-title;
+
+            @include heading-rule-left;
+
+            display: block;
+            padding-bottom: 25px; /* override mixin */
+            color: #fff;
+          }
+
+          .bio {
+            margin-top: 20px;
+
+            p {
+              @include body-text-bio;
+            }
+          }
+
+          @include xlarge-up {
+            grid-column: 6 / 12;
+          }
+        }
+
+        .close {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 32px;
+          height: 32px;
+          padding: 6px;
+          cursor: pointer;
+          border: 2px solid rgb(255 255 255 / 35%);
+          border-radius: 50%;
+
+          svg {
+            width: 100%;
+            height: 100%;
+
+            path {
+              fill: #fff;
+            }
+          }
+
+          &:hover {
+            border: 2px solid rgb(255 255 255 / 100%);
+          }
+        }
+
+        @include medium-up {
+          padding: 35px;
+        }
+
+        @include xlarge-up {
+          padding: 55px;
+        }
+      }
+
+      @include medium-up {
+        grid-column: 2 / 32;
+      }
+
+      @include xlarge-up {
+        grid-column: 3 / 31;
+      }
+    }
+
+    @include medium-up {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@use '../styles/utils';
+
+.root {
+  position: relative;
+  margin-right: -18px;
+  margin-left: -18px;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title {
+  margin-bottom: utils.$mar-xl;
+  font-size: 28px;
+  font-weight: utils.$extrabold-weight;
+  color: #070505;
+  text-align: center;
+}
+
+.carousel {
+  display: inline-flex;
+  justify-content: space-evenly;
+  list-style: none;
+
+  > li {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.buttons {
+  position: absolute;
+  top: 52.4%;
+  left: 50%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 686px;
+  padding: 0 18px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+
+  & > button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 50%;
+
+    &:first-child {
+      background: url('../assets/components/carousel/arrow-left.png');
+      background-size: contain;
+    }
+
+    &:last-child {
+      background: url('../assets/components/carousel/arrow-right.png');
+      background-size: contain;
+    }
+  }
+}
+
+@include utils.bp-any(sm) {
+  .title {
+    font-size: 21px;
+  }
+
+  .buttons {
+    top: unset;
+    bottom: 6px;
+    max-width: 476px;
+    padding: 0 8px;
+  }
+}

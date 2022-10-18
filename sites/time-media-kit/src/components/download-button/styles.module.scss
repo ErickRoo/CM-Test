@@ -1,0 +1,20 @@
+@import '../../styles/helpers';
+
+:global(.DownloadButton) {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  padding: 9.5px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+
+  .buttonText {
+    margin-top: 0.2rem;
+  }
+
+  :global(.material-icons-outlined) {
+    margin-right: 7px;
+    font-size: 1.0625rem;
+    color: $color-light-red;
+  }
+}

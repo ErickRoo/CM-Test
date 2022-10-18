@@ -1,0 +1,34 @@
+@use '../../../styles/utils';
+
+.modal-video-player {
+  max-height: 576px;
+  overflow: hidden;
+  border-radius: utils.$border-radius-md;
+
+  .jw-reset {
+    &.jw-media video,
+    &.jw-preview,
+    &.jw-controls {
+      overflow: hidden;
+      border-radius: utils.$border-radius-md;
+    }
+  }
+
+  &::before {
+    background-color: utils.$dark-blue;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .modal-video-player {
+    border-radius: utils.$border-radius-sm;
+
+    .jw-reset {
+      &.jw-media video,
+      &.jw-preview,
+      &.jw-controls {
+        border-radius: utils.$border-radius-sm;
+      }
+    }
+  }
+}

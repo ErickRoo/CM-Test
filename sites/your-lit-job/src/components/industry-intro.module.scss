@@ -1,0 +1,78 @@
+@use '../styles/utils';
+
+.intro {
+  position: inherit;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  background-color: #fff;
+  border-radius: utils.$border-radius-ty;
+  box-shadow: 0 10px 20px 0 rgb(18 18 18 / 5%);
+}
+
+.body {
+  font-family: 'Libre Baskerville', serif;
+}
+
+.deck,
+.body,
+.description {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.deck {
+  font-size: 1.16em;
+  font-weight: utils.$extrabold-weight;
+}
+
+.description {
+  font-weight: utils.$extrabold-weight;
+}
+
+.comingSoon {
+  font-style: italic;
+  font-weight: utils.$semibold-weight;
+  text-align: center;
+  background-color: #eff2f8;
+  border-radius: 6px;
+}
+
+@include utils.bp-any(md, lg) {
+  .intro {
+    padding: 50px 25px 60px;
+    margin-bottom: 60px;
+  }
+
+  .deck {
+    font-size: 1.45em;
+  }
+
+  .comingSoon {
+    width: 530px;
+    padding: 18px 0;
+    margin: 40px auto 0;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .intro {
+    padding: 32px 25px 25px;
+    margin: 0;
+    margin-bottom: 40px;
+  }
+
+  .deck {
+    margin-bottom: 25px;
+    font-size: 1.125em;
+  }
+
+  .description {
+    margin-bottom: 15px;
+  }
+
+  .comingSoon {
+    width: 100%;
+    padding: 23px 55px;
+    margin: 40px auto 0;
+  }
+}

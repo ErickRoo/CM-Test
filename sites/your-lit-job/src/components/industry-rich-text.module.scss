@@ -1,0 +1,12 @@
+@use '../styles/utils';
+
+.root {
+  p {
+    margin-block-start: 1em;
+  }
+
+  b,
+  strong {
+    font-weight: utils.$extrabold-weight;
+  }
+}

@@ -1,0 +1,119 @@
+/* stylelint-disable property-no-vendor-prefix */
+@use '../../../styles/utils';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  margin-top: 60px;
+  touch-action: none;
+
+  > section {
+    position: relative;
+    width: 95%;
+    max-width: 625px;
+  }
+}
+
+.inputRange {
+  position: absolute;
+  z-index: 10;
+  width: calc(100% - 10px);
+  height: 70px;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  transition: opacity 0.2s;
+  transform: translateY(-50%);
+  -webkit-appearance: none;
+
+  &::-webkit-slider-thumb {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    -webkit-appearance: none;
+  }
+
+  &::-moz-range-thumb {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+  }
+}
+
+.iconSelect {
+  position: absolute;
+  width: calc(100% - 79px);
+  margin-left: -3px;
+
+  div {
+    position: absolute;
+    top: -39px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border-radius: 50%;
+
+    > img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      background: transparent;
+      border-radius: 50%;
+      transform: translateZ(0);
+    }
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    height: 40px;
+    margin-top: 40px;
+
+    section {
+      width: 100%;
+    }
+  }
+
+  .inputRange {
+    padding: 0 20px;
+
+    &::-webkit-slider-thumb {
+      width: 40px;
+      height: 40px;
+    }
+
+    &::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .iconSelect {
+    width: calc(100% - 91px);
+    margin-left: 19px;
+
+    div {
+      top: -24px;
+      width: 48px;
+      height: 48px;
+    }
+  }
+}

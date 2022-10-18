@@ -1,0 +1,192 @@
+/* Breakpoints */
+$breakpoint-xxlarge: 1680px;
+$breakpoint-xlarge: 1280px;
+$breakpoint-large: 1024px;
+$breakpoint-medium: 768px;
+$breakpoint-small: 550px;
+$breakpoint-tiny: 320px;
+
+/* Tiny */
+
+/* Greater than 320px */
+@mixin tiny-up {
+  @media (min-width: $breakpoint-tiny) {
+    @content;
+  }
+}
+
+/* Between 320px and 550px */
+@mixin tiny {
+  @media (min-width: $breakpoint-tiny) and (max-width: $breakpoint-small - 1px) {
+    @content;
+  }
+}
+
+/* Less than 550px */
+@mixin tiny-down {
+  @media (max-width: $breakpoint-small - 1px) {
+    @content;
+  }
+}
+
+/* Small */
+
+/* Greater than 550px */
+@mixin small-up {
+  @media (min-width: $breakpoint-small) {
+    @content;
+  }
+}
+
+/* Between 550px and 768px */
+@mixin small {
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium - 1px) {
+    @content;
+  }
+}
+
+/* Less than 768px */
+@mixin small-down {
+  @media (max-width: $breakpoint-medium - 1px) {
+    @content;
+  }
+}
+
+/* Medium Ranges */
+
+/* Greater than 768px */
+@mixin medium-up {
+  @media (min-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+/* Between 768px and 1024px */
+@mixin medium {
+  @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large - 1px) {
+    @content;
+  }
+}
+
+/* Less than 1024px */
+@mixin medium-down {
+  @media (max-width: $breakpoint-large - 1px) {
+    @content;
+  }
+}
+
+/* Large Ranges */
+
+/* Greater than 1024px */
+@mixin large-up {
+  @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+/* Between 1024px and 1280px */
+@mixin large {
+  @media (min-width: $breakpoint-large) and (max-width: $breakpoint-xlarge - 1px) {
+    @content;
+  }
+}
+
+/* Less than 1280px */
+@mixin large-down {
+  @media (max-width: $breakpoint-xlarge - 1px) {
+    @content;
+  }
+}
+
+/* Extra Large */
+
+/* Greater than 1024px */
+@mixin xlarge-up {
+  @media (min-width: $breakpoint-xlarge) {
+    @content;
+  }
+}
+
+/* Greater than 1280px */
+@mixin xlarge {
+  @media (min-width: $breakpoint-xlarge) and (max-width: $breakpoint-xxlarge - 1px) {
+    @content;
+  }
+}
+
+/* Less than 1680px */
+@mixin xlarge-down {
+  @media (max-width: $breakpoint-xxlarge - 1px) {
+    @content;
+  }
+}
+
+/* Extra Extra Large */
+
+/* Greater than 1680px */
+@mixin xxlarge {
+  @media (min-width: $breakpoint-xxlarge) {
+    @content;
+  }
+}
+
+/* uncomment this for responsive helpers */
+
+/*
+html {
+  &:after {
+    content: "";
+    color: white;
+    position: fixed;
+    backface-visibility: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    pointer-events: none;
+  }
+
+  @include tiny {
+    &:after {
+      content: "tiny";
+      border: 1px solid red;
+    }
+  }
+
+  @include small {
+    &:after {
+      content: "small";
+      border: 1px solid orange;
+    }
+  }
+
+  @include medium {
+    &:after {
+      content: "medium";
+      border: 1px solid yellow;
+    }
+  }
+
+  @include large {
+    &:after {
+      content: "large";
+      border: 1px solid green;
+    }
+  }
+
+  @include xlarge {
+    &:after {
+      content: "xlarge";
+      border: 1px solid blue;
+    }
+  }
+
+  @include xxlarge {
+    &:after {
+      content: "xxlarge";
+      border: 1px solid indigo;
+    }
+  }
+}
+*/

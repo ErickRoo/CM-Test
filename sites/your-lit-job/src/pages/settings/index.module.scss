@@ -1,0 +1,22 @@
+@use '../../styles/utils';
+
+.root {
+  @include utils.doodle-background('../');
+
+  text-align: center;
+}
+
+.link {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-weight: utils.$semibold-weight;
+  color: utils.$blue;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.body {
+  padding: 10px;
+  font-family: 'Montserrat', 'Arial', sans-serif;
+}

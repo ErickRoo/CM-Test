@@ -1,0 +1,89 @@
+@import '../../styles/helpers';
+
+.HeroHome {
+  position: relative;
+  height: 90vh; /* TODO: fix for mobile */
+  padding: 0;
+  margin: 0 auto;
+  overflow: hidden;
+
+  .inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: $page-content-vertical-padding-mobile;
+    left: 0;
+    height: 100%;
+    background-color: #000;
+
+    .video,
+    .poster {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .video {
+      opacity: 0.75;
+    }
+
+    .poster {
+      pointer-events: none;
+      opacity: 0.6;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 100%;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-gap: 0;
+      align-items: center;
+      height: 100%;
+      pointer-events: none;
+
+      .overlayInner {
+        grid-row: 1;
+        grid-column: 2 / 16;
+
+        h1 {
+          @include heading-h1;
+
+          max-width: 720px;
+
+          @include medium-up {
+            font-size: 5.5vw;
+          }
+
+          @include xlarge-up {
+            font-size: 7.5rem;
+          }
+        }
+
+        @include medium-up {
+          grid-column: 3 / 15;
+        }
+      }
+    }
+
+    @include medium-up {
+      bottom: $page-content-vertical-padding-desktop;
+    }
+  }
+
+  @include medium-up {
+    height: 100vh; /* TODO: fix for mobile */
+  }
+}

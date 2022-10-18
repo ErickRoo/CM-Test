@@ -1,0 +1,64 @@
+@use '../styles/utils';
+
+.window {
+  max-width: 540px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: utils.$extrabold-weight;
+}
+
+.copy {
+  @include utils.no-margin-overflow;
+}
+
+.image {
+  &,
+  img {
+    border-radius: utils.$border-radius-sm utils.$border-radius-sm 0 0;
+  }
+}
+
+.buttons {
+  /* placeholder */
+}
+
+.button {
+  margin-top: 5px;
+}
+
+@include utils.bp-any(sm) {
+  .title {
+    margin-top: 15px;
+  }
+
+  .copy {
+    padding: 0 14px;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    padding-bottom: 32px;
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .title {
+    margin-top: 30px;
+  }
+
+  .copy {
+    padding: 0 34px;
+    margin-bottom: 30px;
+  }
+
+  .content {
+    padding-bottom: 39px;
+  }
+}

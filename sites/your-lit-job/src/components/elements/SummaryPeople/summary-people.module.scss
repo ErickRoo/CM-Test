@@ -1,0 +1,80 @@
+@use '../../../styles/utils';
+
+.root {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.title {
+  margin-bottom: utils.$mar-xl;
+  font-size: 28px;
+  font-weight: utils.$extrabold-weight;
+  color: #070505;
+  text-align: center;
+}
+
+.carousel-stack {
+  > ul {
+    height: 625px;
+  }
+}
+
+.description {
+  max-width: 760px;
+  padding: 30px 60px 60px;
+  margin: 20px auto;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 20px;
+
+  h3 {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: utils.$extrabold-weight;
+    color: utils.$skill-foreground-color;
+  }
+
+  > span {
+    display: inline-block;
+    min-width: 130px;
+    padding: 5px;
+    margin: 0 5px 15px;
+    font-size: 14px;
+    font-weight: utils.$extrabold-weight;
+    color: #fff;
+    background-color: utils.$skill-foreground-color;
+    border-radius: 28px;
+  }
+
+  b {
+    color: utils.$skill-foreground-color;
+  }
+}
+
+@include utils.bp-any(sm, md) {
+  .carousel-stack {
+    > ul {
+      height: 550px;
+    }
+  }
+
+  .description {
+    padding: 30px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    margin-bottom: 50px;
+  }
+
+  .title {
+    margin-bottom: calc(100px - 25vw);
+  }
+
+  .carousel-stack {
+    > ul {
+      height: calc(100vw * 1.25);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@use './../styles/utils';
+
+.JxPlayer .jwplayer {
+  .jw-controls {
+    @media print {
+      display: none;
+    }
+  }
+
+  // Idle tint
+  &.jw-state-idle .jw-controls {
+    background: rgb(0 0 0 / 20%);
+  }
+
+  // Idle play button
+  .jw-controls .jw-display .jw-display-controls .jw-display-icon-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .jw-controls .jw-display .jw-display-controls .jw-display-icon-display {
+    background-color: #45faa0;
+    border: solid 2px utils.$almost-black;
+    border-radius: utils.$border-radius-sm;
+    box-shadow: inset 0 -4px 0 0 #38d488;
+
+    .jw-button-color {
+      color: utils.$almost-black;
+    }
+
+    .jw-svg-icon-play {
+      transform: scale(0.6, 0.8);
+    }
+  }
+  @include utils.bp-any(sm) {
+    /* placeholder */
+  }
+
+  @include utils.bp-any(md, lg) {
+    // Idle play button
+    .jw-controls .jw-display .jw-display-controls .jw-display-icon-display {
+      .jw-icon-display {
+        width: 140px;
+        height: 100px;
+      }
+    }
+  }
+
+  @include utils.bp-any(sm) {
+    // Idle play button
+    .jw-controls .jw-display .jw-display-controls .jw-display-icon-display {
+      .jw-icon-display {
+        width: 112px;
+        height: 80px;
+      }
+    }
+  }
+}

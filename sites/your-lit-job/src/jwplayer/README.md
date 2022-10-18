@@ -1,0 +1,1 @@
+The JWPlayer appears to have a bug with sequence of loading. To resolve this, the source has been copied here and slightly modified (see code comments in `jwyplayer.jsx`)

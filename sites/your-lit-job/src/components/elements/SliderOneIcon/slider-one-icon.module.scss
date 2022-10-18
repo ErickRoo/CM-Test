@@ -1,0 +1,44 @@
+@use '../../../styles/utils';
+
+.root {
+  @for $i from 1 to 6 {
+    &:nth-child(#{$i}) {
+      left: $i * 20%;
+    }
+  }
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+
+  img {
+    position: absolute;
+    height: auto;
+  }
+}
+
+.normal {
+  width: 40px;
+}
+
+.hover {
+  width: 48px;
+}
+
+@media (max-width: 480px) {
+  .root {
+    width: 32px;
+    height: 32px;
+  }
+
+  .normal {
+    width: 32px;
+  }
+
+  .hover {
+    width: 34px;
+  }
+}

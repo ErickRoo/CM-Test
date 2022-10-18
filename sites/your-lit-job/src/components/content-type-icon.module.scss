@@ -1,0 +1,84 @@
+@use '../styles/utils';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sizeSmall {
+  &.corner {
+    top: 5px;
+    left: 5px;
+  }
+
+  width: 30px;
+  height: 30px;
+}
+
+.sizeMedium {
+  &.corner {
+    top: 10px;
+    left: 10px;
+  }
+
+  width: 55px;
+  height: 55px;
+}
+
+.button {
+  width: inherit;
+  height: inherit;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.corner {
+  position: absolute;
+  z-index: 2;
+  background-color: #0006;
+  border-radius: 50%;
+
+  .button {
+    width: unset;
+    height: unset;
+  }
+
+  .icon {
+    padding-top: 5px;
+  }
+}
+
+.typeContentfulArticle {
+  .icon {
+    background-image: url("../assets/components/content-type-icons/article.png");
+  }
+}
+
+.typeContentfulMultimedia {
+  .icon {
+    background-image: url("../assets/components/content-type-icons/multimedia.png");
+  }
+}
+
+.typeContentfulAsk {
+  .icon {
+    background-image: url("../assets/components/content-type-icons/ask.png");
+  }
+}
+
+.typeContentfulMeetup {
+  .icon {
+    background-image: url("../assets/components/content-type-icons/meetup.png");
+  }
+}

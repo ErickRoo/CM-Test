@@ -1,0 +1,51 @@
+@use '../styles/utils';
+
+.root {
+  list-style-type: none;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  padding: 6px 13px;
+  margin-bottom: utils.$mar-sm;
+  font-size: 14px;
+  background-color: utils.$muted-blue;
+  border-radius: utils.$border-radius-ty;
+
+  > :first-child {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.highlight-left {
+  &__salary {
+    background: url('../assets/components/carousel/icon-salary.png');
+  }
+
+  &__education {
+    background: url('../assets/components/carousel/icon-education.png');
+  }
+
+  &__chart {
+    background: url('../assets/components/carousel/icon-chart.png');
+  }
+
+  &__heat {
+    background: url('../assets/components/carousel/icon-heat.png');
+  }
+}
+
+.highlight-right {
+  width: calc(100% - 50px);
+  margin-left: utils.$mar-lg;
+
+  > :first-child {
+    margin-right: 0.25rem;
+
+    // font-weight: utils.$extrabold-weight;
+  }
+}

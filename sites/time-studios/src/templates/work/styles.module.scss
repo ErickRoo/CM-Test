@@ -1,0 +1,13 @@
+@import '../../styles/helpers';
+
+.Work {
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  .content {
+    max-width: $page-content-max-width;
+    padding: 0; /* override for mobile to let project grid do the lifting */
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,73 @@
+@use '../styles/utils';
+
+.root {
+  position: relative;
+}
+
+.avatarImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &.defaultAvatar {
+    background: url('../assets/components/avatar/default.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.activist {
+    background: url('../assets/components/avatar/activist.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.athletic {
+    background: url('../assets/components/avatar/athletic.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.bookworm {
+    background: url('../assets/components/avatar/bookworm.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.chill {
+    background: url('../assets/components/avatar/chill.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.gamer {
+    background: url('../assets/components/avatar/gamer.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.glam {
+    background: url('../assets/components/avatar/glam.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.hipster {
+    background: url('../assets/components/avatar/hipster.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.prep {
+    background: url('../assets/components/avatar/prep.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.skater {
+    background: url('../assets/components/avatar/skater.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &.street {
+    background: url('../assets/components/avatar/street.png') no-repeat center center;
+    background-size: contain;
+  }
+}

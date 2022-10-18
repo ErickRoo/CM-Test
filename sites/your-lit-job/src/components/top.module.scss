@@ -1,0 +1,59 @@
+@use '../styles/utils';
+
+.button {
+  position: relative;
+  display: block;
+  width: 68px;
+  height: 68px;
+  padding: 0;
+  cursor: pointer;
+  background: url('../assets/components/top/top.png') no-repeat center center;
+  background-size: contain;
+  border: none;
+  border-radius: 50%;
+  appearance: none;
+
+  &::before {
+    position: absolute;
+    top: 42px;
+    display: block;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: utils.$extrabold-weight;
+    line-height: 1em;
+    text-transform: uppercase;
+    content: 'Top';
+  }
+}
+
+.root {
+  position: sticky;
+  z-index: 101;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  transition: opacity 300ms ease-out;
+
+  &.hide {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &.show {
+    opacity: 1;
+
+    .button {
+      pointer-events: all;
+    }
+  }
+
+  @include utils.bp-any(md, lg) {
+    bottom: 20px;
+  }
+
+  @include utils.bp-any(sm) {
+    bottom: 70px;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "github.vscode-pull-request-github",
+    "editorconfig.editorconfig",
+    "naumovs.color-highlight",
+    "streetsidesoftware.code-spell-checker",
+    "aaron-bond.better-comments",
+    "eamodio.gitlens",
+    "vscode-icons-team.vscode-icons",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "visualstudioexptteam.vscodeintellicode",
+    "github.remotehub",
+    "codeandstuff.package-json-upgrade",
+    "burkeholland.simple-react-snippets",
+    "tombonnike.vscode-status-bar-format-toggle",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "graphql.vscode-graphql"
+  ]
+}

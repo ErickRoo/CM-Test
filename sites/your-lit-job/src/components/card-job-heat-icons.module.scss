@@ -1,0 +1,29 @@
+@use '../styles/utils';
+
+.root {
+  display: inline-flex;
+
+  ul {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    list-style-type: none;
+  }
+
+  li {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.heat-icon {
+  &__dark {
+    background: url('../assets/components/carousel/icon-mini-heat-dark.png');
+  }
+
+  &__grey {
+    background: url('../assets/components/carousel/icon-mini-heat-grey.png');
+  }
+}

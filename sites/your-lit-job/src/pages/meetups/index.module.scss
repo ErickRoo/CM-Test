@@ -1,0 +1,26 @@
+@use '../../styles/utils';
+
+.root {
+  @include utils.doodle-background('../');
+}
+
+.container {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.copy {
+  max-width: 620px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.featured {
+  padding-top: 10px !important;
+  margin-right: -15px !important;
+  margin-left: -15px !important;
+}
+
+.contentActions {
+  margin-bottom: 30px;
+}

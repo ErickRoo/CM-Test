@@ -1,0 +1,25 @@
+@use '../styles/utils';
+
+.primaryImageContainer {
+  border-bottom: 4px solid utils.$purple;
+
+  &.roundedAll {
+    &,
+    img {
+      border-radius: utils.$border-radius-ty;
+    }
+  }
+}
+
+.link {
+  display: block;
+  margin-top: 15px;
+  font-size: 16px;
+  line-height: 1em;
+  color: utils.$blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

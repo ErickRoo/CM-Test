@@ -1,0 +1,43 @@
+@use '../styles/utils';
+
+.root {
+  display: block;
+}
+
+.title {
+  max-width: 178px;
+  font-size: 21px;
+  font-weight: utils.$semibold-weight;
+  text-align: center;
+  margin: auto;
+}
+
+.maContainer {
+  max-width: 1087px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 25px;
+}
+
+.content {
+  padding-block-end: 40px;
+  margin-block-end: 40px;
+  background: linear-gradient(to top, #ffffff, transparent);
+}
+
+@include utils.bp-any(sm) {
+  .title {
+    margin-block-end: 10px;
+  }
+
+  .maContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .title {
+    padding-block-end: 40px;
+  }
+}

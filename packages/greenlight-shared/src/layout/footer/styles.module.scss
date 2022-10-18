@@ -1,0 +1,65 @@
+@import '../../styles/helpers';
+
+.Footer {
+  padding: 1.875rem 1.25rem 0;
+  font-size: 0.75rem;
+  color: $color-dark-grey;
+  text-align: center;
+  background: $color-white;
+  border-top: 1px solid $color-grey;
+
+  a {
+    color: $color-red;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .logo {
+    display: inline-block;
+    margin-bottom: 1.563rem;
+
+    svg {
+      height: 1.875rem;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.188rem;
+
+    a {
+      color: $color-dark-grey;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $color-red;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .legal {
+    padding: 1.25rem 0;
+    line-height: 1.8;
+    border-top: 1px solid $color-grey;
+  }
+
+  @include tablet {
+    padding: 2.188rem 2.5rem 0;
+
+    .logo {
+      margin-bottom: 1.25rem;
+    }
+
+    .links {
+      flex-direction: row;
+      gap: 3.125rem;
+    }
+  }
+}

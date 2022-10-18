@@ -1,0 +1,49 @@
+@import '../../styles/helpers';
+
+.HeroCarousel {
+  position: relative;
+  height: 65vh; /* TODO: fix for mobile */
+  padding: 0;
+  margin: 0 auto;
+  overflow: hidden;
+
+  @include medium-up {
+    height: 75vh; /* TODO: fix for mobile */
+  }
+}
+
+.HeroCarouselSelectors {
+  position: relative;
+  bottom: 7rem;
+  display: flex;
+  justify-content: center;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  label {
+    display: inline-block;
+    width: 64px;
+    height: 2px;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+    background-color: #a8a8a8;
+    border-radius: 16px;
+
+    @include medium-up {
+      width: 11px;
+      height: 11px;
+      margin: 0 3px;
+      border-radius: 100%;
+    }
+  }
+
+  input:checked + label {
+    background-color: #fff;
+  }
+
+  @include medium-up {
+    bottom: 13rem;
+  }
+}

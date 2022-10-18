@@ -1,0 +1,13 @@
+@use '../styles/utils';
+
+.root {
+  @include utils.no-margin-overflow;
+}
+
+.primaryImageContainer {
+  border-bottom: 4px solid utils.$purple;
+}
+
+.subhead {
+  color: utils.$dark-purple;
+}

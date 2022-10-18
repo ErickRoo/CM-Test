@@ -1,0 +1,79 @@
+@use '../../../styles/utils';
+
+$colors: utils.get-skills-colors();
+
+.root {
+  position: relative;
+}
+
+.shape {
+  @each $key, $value in $colors {
+    &__#{$key} {
+      background-color: $value;
+    }
+  }
+
+  position: absolute;
+  top: -25px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  border-top-right-radius: 20%;
+  transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.text {
+  @include utils.skill-cards;
+
+  position: relative;
+  max-width: 1100px;
+  padding: utils.$pad-xl utils.$pad-md;
+  margin: auto;
+
+  h3 {
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: utils.$extrabold-weight;
+    text-align: center;
+  }
+
+  p {
+    padding-right: utils.$pad-md;
+    padding-left: utils.$pad-md;
+    margin: utils.$mar-sm auto utils.$mar-md;
+    text-align: center;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .text {
+    padding-right: utils.$pad-sm;
+    padding-left: utils.$pad-sm;
+
+    p {
+      padding: 0;
+    }
+  }
+}
+
+@include utils.bp-any(md) {
+  .shape {
+    display: block;
+  }
+
+  .text p {
+    max-width: 80%;
+  }
+}
+
+@include utils.bp-any(lg) {
+  .shape {
+    display: block;
+  }
+
+  .text p {
+    max-width: 80%;
+  }
+}

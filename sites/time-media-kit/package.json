@@ -1,0 +1,26 @@
+{
+  "name": "time-media-kit",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build --prefix-paths",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "gatsby": "^4.11.0",
+    "gatsby-plugin-google-gtag": "^4.15.0",
+    "gatsby-plugin-google-tagmanager": "^4.15.0",
+    "gatsby-plugin-image": "^2.11.0",
+    "greenlight-core": "*",
+    "markdown-it": "^12.3.2",
+    "normalize-scss": "^7.0.1",
+    "react": "^18.0.0",
+    "react-helmet": "^6.1.0",
+    "react-intersection-observer": "^9.1.0",
+    "react-markdown": "^8.0.3",
+    "remark-gfm": "^3.0.1"
+  }
+}

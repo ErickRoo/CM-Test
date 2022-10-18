@@ -1,0 +1,179 @@
+@use '../../styles/utils';
+
+.root {
+  @include utils.doodle-background('../');
+
+  padding-bottom: 1px;
+}
+
+.article {
+  /* placeholder */
+}
+
+.body {
+  max-width: 640px;
+}
+
+.moreContent {
+  padding-block-start: 40px;
+  margin-block-end: 40px;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  border-top: solid 1px rgb(132 133 136 / 25%);
+
+  @media print {
+    display: none;
+  }
+}
+
+.date {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: utils.$black-weight;
+  text-transform: uppercase;
+}
+
+.title {
+  font-weight: utils.$extrabold-weight;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+.authors {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+.deck {
+  text-align: center;
+}
+
+.meta {
+  line-height: 1em;
+}
+
+.authorsList {
+  /* placeholder */
+}
+
+.primaryImage {
+  margin-bottom: 40px;
+}
+
+.likeContainer {
+  margin: 40px auto 20px;
+
+  @media print {
+    border: none;
+  }
+}
+
+.content-actions {
+  margin-bottom: 30px;
+}
+
+@include utils.bp-any(sm) {
+  .root {
+    padding-bottom: 32px;
+  }
+
+  .article {
+    margin-top: 40px;
+  }
+
+  .meta {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .tags {
+    justify-content: center;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .title {
+    margin-bottom: 15px;
+    font-size: 28px;
+  }
+
+  .deck {
+    margin-bottom: 10px;
+    font-size: 21px;
+  }
+
+  .authors {
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .asSeenOn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .root {
+    padding-bottom: 50px;
+  }
+
+  .article {
+    margin-top: 55px;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tags {
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 14px;
+    line-height: 1.25em;
+
+    &.pipe::before {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+      content: '|';
+    }
+  }
+
+  .title {
+    margin-bottom: 20px;
+    font-size: 48px;
+  }
+
+  .deck {
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+
+  .authors {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  .asSeenOn {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .attribution {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+}

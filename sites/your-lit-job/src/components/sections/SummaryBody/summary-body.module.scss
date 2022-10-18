@@ -1,0 +1,25 @@
+@use '../../../styles/utils';
+
+.root {
+  position: relative;
+  padding: 50px utils.$pad-md utils.$pad-lg;
+  background-color: utils.$muted-blue;
+  background-size: contain;
+  box-shadow: 0 0 30px #e8e8e8;
+}
+
+.featured-jobs {
+  width: calc(100% + 30px);
+  margin-bottom: 60px;
+}
+
+.people {
+  display: block;
+}
+
+@include utils.bp-any(sm) {
+  .summaryBody {
+    padding-right: utils.$pad-sm;
+    padding-left: utils.$pad-sm;
+  }
+}

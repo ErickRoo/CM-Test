@@ -1,0 +1,125 @@
+@import '../../styles/helpers';
+
+.ProjectsFilter {
+  position: relative;
+  z-index: $z-index-projects-filter-mobile;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-gap: 0;
+  transform: translate3d(0, -35px, 0);
+
+  ul {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    grid-row: 1;
+    grid-column: 2 / 16;
+    width: 100%;
+
+    li {
+      position: relative;
+      display: none;
+      flex-basis: 100%;
+      padding: 25px 0 20px 25px;
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      background-color: $color-filter-button;
+      border-top: 1px solid rgba($color-background-dark, 0.35);
+
+      span {
+        @include project-filter-label;
+
+        display: inline-block;
+        user-select: none;
+
+        span.mobileAddition {
+          display: inline-block;
+
+          @include medium-up {
+            display: none;
+          }
+        }
+      }
+
+      &.currentFilter {
+        display: block;
+        color: #fff;
+        background-color: $color-filter-button;
+        border-top: none;
+
+        @include medium-up {
+          display: none;
+        }
+      }
+
+      &.shown {
+        display: block;
+      }
+
+      .caret {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        display: block;
+        width: 12px;
+        height: 12px;
+        content: '';
+        border-right: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        transform: rotate(45deg) translate3d(-50%, -50%, 0);
+
+        &.open {
+          top: 35%;
+          transform: rotate(225deg) translate3d(-50%, -50%, 0);
+        }
+      }
+
+      @include small-down {
+        background-color: #333;
+
+        &.active {
+          color: #bbb;
+          background-color: #484848;
+        }
+
+        &:nth-child(2) {
+          order: 2;
+        }
+      }
+
+      @include medium-up {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px 0 20px;
+        margin-bottom: 0;
+        color: #fff;
+        text-align: center;
+        border-bottom: 5px solid transparent;
+
+        &.active {
+          border-bottom: 5px solid #fff;
+        }
+
+        &:hover:not(.active) {
+          background-color: $color-filter-button-hover;
+          border-bottom: 5px solid $color-time-red;
+        }
+      }
+    }
+
+    @include medium-up {
+      position: relative;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-around;
+    }
+  }
+
+  @include medium-up {
+    z-index: auto;
+    transform: translate3d(0, -50%, 0);
+  }
+}

@@ -1,0 +1,53 @@
+@use '../../../styles/utils';
+
+$colors: utils.get-skills-colors();
+
+.feed {
+  padding-bottom: 41px;
+  background-color: #fff;
+}
+
+.button {
+  padding: utils.$pad-lg;
+  background-color: utils.$muted-blue;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: auto;
+
+  li {
+    flex-basis: 50%;
+    width: 100%;
+    margin: 0 utils.$mar-sm;
+    font-weight: 800;
+    text-align: center;
+    list-style-type: none;
+
+    button {
+      border: solid 2px #070505;
+
+      img {
+        height: 27px;
+        padding-right: utils.$pad-sm;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    padding: 15px;
+  }
+
+  .buttons {
+    flex-direction: column;
+
+    > *:first-child {
+      margin-bottom: 15px;
+    }
+  }
+}

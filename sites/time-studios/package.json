@@ -1,0 +1,25 @@
+{
+  "name": "time-studios",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build --prefix-paths",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "gatsby": "^4.13.0",
+    "gatsby-plugin-google-gtag": "^4.13.0",
+    "gatsby-plugin-google-tagmanager": "^4.13.0",
+    "gatsby-plugin-image": "^2.13.0",
+    "gatsby-plugin-s3": "^0.3.8",
+    "greenlight-core": "*",
+    "greenlight-shared": "^0.0.1",
+    "markdown-it": "^13.0.0",
+    "normalize-scss": "^7.0.1",
+    "react": "^18.1.0",
+    "react-helmet": "^6.1.0"
+  }
+}

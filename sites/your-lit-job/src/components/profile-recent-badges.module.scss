@@ -1,0 +1,32 @@
+@use '../styles/utils';
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.text {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.viewAll {
+  font-size: 13px;
+  font-weight: utils.$semibold-weight;
+  color: #848588;
+  text-decoration: none;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.badges {
+  display: flex;
+  flex: 1 0 25%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

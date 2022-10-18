@@ -1,0 +1,80 @@
+@use '../styles/utils';
+
+.root {
+  position: sticky;
+  top: 5px;
+  z-index: 997;
+  padding: 0 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 840px;
+  height: 64px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 10px 20px #1212120d;
+}
+
+.form-check {
+  label {
+    vertical-align: middle;
+  }
+
+  &:first-child {
+    margin-right: 30px;
+  }
+}
+
+.radio {
+  display: grid;
+  place-content: center;
+  margin: 0;
+  appearance: none;
+  font: inherit;
+  background-color: #fff;
+  border: 3px solid utils.$almost-black;
+  border-radius: 50%;
+  transition: 200ms background-color ease-in-out;
+
+  &::before {
+    width: 14px;
+    height: 14px;
+    content: '';
+    border-radius: 50%;
+    box-shadow: inset 1em 1em utils.$almost-black;
+    transition: 250ms transform ease-in-out;
+    transform: scale(0);
+  }
+}
+
+.radio-selected {
+  background-color: utils.$light-blue;
+  transition: 200ms background-color ease-in-out;
+
+  &::before {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-check:first-child {
+    margin-right: 10px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root {
+    top: 65px;
+  }
+
+  .form-check label {
+    vertical-align: text-top;
+  }
+}

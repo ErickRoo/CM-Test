@@ -1,0 +1,19 @@
+@mixin font-book {
+  font-family: 'ITCFranklinGothicStd-Book', 'Arial', sans-serif;
+}
+
+@mixin font-book-compressed {
+  font-family: 'ITCFranklinGothicStd-BkCp', 'Arial', sans-serif;
+}
+
+@mixin font-demi {
+  font-family: 'ITCFranklinGothicStd-Demi', 'Arial', sans-serif;
+}
+
+@mixin font-demi-compressed {
+  font-family: 'ITCFranklinGothicStd-DmCp', 'Arial', sans-serif;
+}
+
+@mixin font-medium-condensed {
+  font-family: 'ITCFranklinGothicStd-MdCd', 'Arial', sans-serif;
+}

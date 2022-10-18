@@ -1,0 +1,8 @@
+@use '../styles/utils';
+
+.errorMessage {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-weight: bold;
+  color: utils.$red;
+  text-align: center;
+}

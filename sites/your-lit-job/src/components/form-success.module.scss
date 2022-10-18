@@ -1,0 +1,8 @@
+@use '../styles/utils';
+
+.successMessage {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-weight: bold;
+  color: utils.$green;
+  text-align: center;
+}

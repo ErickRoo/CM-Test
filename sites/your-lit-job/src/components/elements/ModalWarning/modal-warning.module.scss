@@ -1,0 +1,61 @@
+@use '../../../styles/utils';
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.window {
+  max-width: 570px;
+  text-align: center;
+  white-space: break-spaces;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    padding-top: utils.$pad-sm;
+    font-size: 28px;
+    font-weight: utils.$semibold-weight;
+  }
+
+  p {
+    margin-bottom: utils.$mar-xl;
+  }
+}
+
+.buttons {
+  display: flex;
+  padding-bottom: utils.$pad-md;
+
+  button {
+    &:last-child {
+      color: #fff;
+      background-color: #9c9c9c;
+      border: solid 2px utils.$almost-black;
+    }
+  }
+}
+
+@include utils.bp-any(sm) {
+  .container > div {
+    max-width: unset;
+  }
+
+  .buttons button {
+    width: 175px;
+  }
+}
+
+@media (max-width: 480px) {
+  .window h1 {
+    padding-top: utils.$pad-xl;
+  }
+
+  .buttons {
+    flex-direction: column;
+
+    button {
+      margin-bottom: utils.$mar-sm;
+    }
+  }
+}

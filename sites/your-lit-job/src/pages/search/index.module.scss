@@ -1,0 +1,166 @@
+@use '../../styles/utils';
+
+.root {
+  @include utils.doodle-background('../');
+}
+
+.posts {
+  @include utils.no-margin-overflow;
+  @include utils.doodle-background('../');
+
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 1px;
+
+  > section {
+    opacity: 0;
+  }
+
+  &.loaded > section {
+    opacity: 1;
+  }
+}
+
+.post {
+  margin: 15px;
+}
+
+.loading {
+  padding-top: 5rem;
+  opacity: 1;
+}
+
+.root-algolia {
+  height: 80px;
+  position: sticky;
+  top: 0;
+  z-index: 997;
+  padding: 0 15px;
+}
+
+.no-results {
+  text-align: center;
+}
+
+.not-found {
+  padding-left: 15%;
+}
+
+.form-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 840px;
+  height: inherit;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(18, 18, 18, 0.0531825);
+  border-radius: 0px 0px 20px 20px;
+
+  button {
+    padding: 0;
+
+    svg {
+      height: 22px;
+      width: 22px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+.search-bar {
+  width: 75%;
+  height: 42px;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: utils.$almost-black;
+  border-right: none;
+  border-left: 2px solid utils.$almost-black;
+  border-top: 2px solid utils.$almost-black;
+  border-bottom: 2px solid utils.$almost-black;
+  border-radius: 50px 0 0 50px;
+
+  &::placeholder {
+    color: #848588;
+  }
+}
+
+.submit {
+  width: 60px;
+  height: 42px;
+  background-color: transparent;
+  font-size: 22px;
+  border-left: none;
+  border-right: 2px solid utils.$almost-black;
+  border-top: 2px solid utils.$almost-black;
+  border-bottom: 2px solid utils.$almost-black;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+}
+
+.submit::before {
+  content: '';
+  height: 22px;
+  border-left: 1px solid #d8dce2;
+  padding-right: 10px;
+}
+
+.resetIcon {
+  display: none;
+}
+
+.item {
+  padding: 0 20px 20px;
+}
+
+.emptyRoot {
+  display: none;
+}
+
+@include utils.bp-any(lg, md) {
+  .header {
+    height: 314px;
+  }
+
+  .posts {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@include utils.bp-any(sm) {
+  .header {
+    &::before {
+      display: block;
+      padding-top: 37.3333%;
+      content: '';
+    }
+  }
+
+  .posts {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .root-algolia {
+    top: 60px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header {
+    height: auto !important;
+
+    &::before {
+      display: block;
+      padding-top: 28.0357%;
+      content: '';
+    }
+  }
+}

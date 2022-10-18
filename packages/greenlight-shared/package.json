@@ -1,0 +1,13 @@
+{
+  "name": "greenlight-shared",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "peerDependencies": {
+    "gatsby": "^4.13.0"
+  },
+  "dependencies": {
+    "gatsby": "^4.13.0"
+  }
+}

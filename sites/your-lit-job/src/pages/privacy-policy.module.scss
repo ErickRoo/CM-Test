@@ -1,0 +1,64 @@
+@use '../styles/utils';
+
+.root {
+  @include utils.doodle-background;
+
+  min-height: 100%;
+  padding-bottom: 60px;
+}
+
+.player {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.subhead {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: utils.$black-weight;
+  text-align: center;
+}
+
+.root .body {
+  h3 {
+    margin-top: 1em !important;
+    font-weight: utils.$extrabold-weight;
+
+    & + * {
+      margin-top: 0;
+    }
+  }
+
+  ol,
+  ul {
+    & > li::marker {
+      font-weight: utils.$extrabold-weight;
+    }
+
+    li > *:first-child {
+      margin-top: 0;
+    }
+
+    li > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include utils.bp-any(sm) {
+  .root .body {
+    ol,
+    ul {
+      padding-left: 40px;
+    }
+  }
+}
+
+@include utils.bp-any(md, lg) {
+  .root .body {
+    ol,
+    ul {
+      padding-left: 60px;
+    }
+  }
+}

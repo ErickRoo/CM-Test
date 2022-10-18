@@ -1,0 +1,68 @@
+@use '../../../styles/utils';
+
+$colors: utils.get-skills-colors();
+
+.root {
+  position: relative;
+  margin-top: utils.$mar-sm;
+  margin-bottom: utils.$mar-xl;
+
+  > div:nth-child(2) {
+    z-index: 1;
+    max-width: 250px;
+    max-height: 300px;
+    pointer-events: none;
+  }
+
+  > svg {
+    position: absolute;
+
+    path {
+      cursor: pointer;
+      stroke-width: 2;
+
+      &:first-child {
+        cursor: default;
+      }
+    }
+
+    &:nth-child(1) {
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    &:nth-child(3) {
+      top: 0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      overflow: unset;
+      pointer-events: none;
+
+      path {
+        stroke: #000;
+      }
+    }
+  }
+}
+
+.fill {
+  @each $key, $value in $colors {
+    &__#{$key} {
+      fill: $value;
+    }
+  }
+
+  &__background {
+    fill: #fff;
+    stroke: #fff;
+  }
+}
+
+@include utils.bp-any(sm, md) {
+  .root > svg:nth-child(3) {
+    display: none;
+  }
+}
