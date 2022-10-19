@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useScrollYPosition } from 'react-use-scroll-position/index';
 import { InstantSearch, SearchBox, Hits, useInstantSearch } from 'react-instantsearch-hooks-web';
 import algoliasearch from 'algoliasearch/lite';
 import classNames from 'classnames';
 import * as Styles from './index.module.scss';
+import { useSite } from '../../contexts/SiteContext';
+import Post from '../../components/post';
 
 // import MetaTitle from '../../components/meta-title';
 // import ColorBar from '../../components/color-bar';
 // import PageDimensions from '../../components/page-dimensions';
 // import SearchBar from '../../components/search-bar';
-import Post from '../../components/post';
 // import SkillsLoading from '../../components/elements/SkillsLoading/skills-loading';
 
 const algoliaClient = algoliasearch(process.env.GATSBY_YLJ_ALGOLIA_APP_ID, process.env.GATSBY_YLJ_ALGOLIA_SEARCH_KEY);
@@ -20,11 +22,6 @@ const searchClient = {
     return algoliaClient.search(requests);
   },
 };
-
-// const routing = {
-//   router: history(),
-//   stateMapping: simple(),
-// };
 
 function EmptyQueryBoundary({ children }) {
   const { indexUiState, results } = useInstantSearch();
@@ -47,6 +44,24 @@ function EmptyQueryBoundary({ children }) {
 }
 
 function Search() {
+  const scrollY = useScrollYPosition();
+  const { back, indexScrollPosition, setIndexScrollPosition } = useSite();
+
+  useEffect(() => {
+    if (back) {
+      window.requestAnimationFrame(() => {
+        setTimeout(() => {
+          // Unfortunate hack, but resolves issue with scrolling to incorrect position
+          window.scrollTo(0, indexScrollPosition);
+        }, 100);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    setIndexScrollPosition(window.scrollY);
+  }, [scrollY]);
+
   return (
     <div className={Styles.root}>
       {/* <PageDimensions dimensions={pageDimensions} /> */}
