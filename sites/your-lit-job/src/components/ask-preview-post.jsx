@@ -18,7 +18,6 @@ function AskPreviewPost({ post, headingLevel, className, showFavoriteButton }) {
 
   return (
     <div className={classNames(Styles.root, className)}>
-      {showFavoriteButton && <FavoriteButton postId={post.id} corner />}
       <Link to={path}>
         <div className={classNames(PostStyles.primaryImageContainer, Styles.primaryImageContainer)}>
           <ContentTypeIcon type={post.internal.type} corner />
@@ -38,12 +37,13 @@ function AskPreviewPost({ post, headingLevel, className, showFavoriteButton }) {
       </Link>
 
       <div className={classNames(PostStyles.content, 'container container-pad-lg')}>
-        <div>
+        <div className="clearfix">
           {post.subhead && <div className={classNames(Styles.subhead, PostStyles.subhead)}>{post.subhead}</div>}
           <Heading level={headingLevel} className={classNames(PostStyles.title)}>
             <Link to={path}>{post.title}</Link>
           </Heading>
           <div className={classNames(PostStyles.description)}>{post.description.description}</div>
+          {showFavoriteButton && <FavoriteButton postId={post.id} className={PostStyles.favorite} />}
         </div>
       </div>
     </div>

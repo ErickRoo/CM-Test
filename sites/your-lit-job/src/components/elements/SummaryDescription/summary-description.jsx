@@ -45,7 +45,7 @@ function SummaryDescription({ id, position, subtitle, description, buttonsRef, c
         className={classNames(Styles.shape, Styles[`show__${position + 1}`], Styles[`shape__${id}`])}
         style={{ left: leftPositions[position], backgroundColor: color }}
       />
-      <section className={classNames(Styles.text, Styles[`text__${id}`])} style={{borderColor: color}}>
+      <section className={classNames(Styles.text, Styles[`text__${id}`])} style={{ borderColor: color }}>
         <Heading level={3}>{subtitle}</Heading>
         <p>{description}</p>
       </section>

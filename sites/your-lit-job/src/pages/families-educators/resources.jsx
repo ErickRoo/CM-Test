@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import classNames from 'classnames';
 import * as Styles from './resources.module.scss';
@@ -14,8 +14,38 @@ import GenericPageSubhead from '../../components/generic-page-subhead';
 import PageDimensions from '../../components/page-dimensions';
 import { trackEvent } from '../../utils/track';
 import Like from '../../components/like';
+import FormError from '../../components/form-error';
+import FormSuccess from '../../components/form-success';
+import FormProcessing from '../../components/form-processing';
+import Button from '../../components/button';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Resources() {
+  const { sendResourceOptIn } = useAuth();
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [newEmail, setNewEmail] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+    setIsProcessing(true);
+
+    try {
+      await sendResourceOptIn(newEmail);
+      setError('');
+      setSuccess('Thank you for subscribing.');
+    } catch (catchError) {
+      setError(catchError.message);
+    }
+
+    setIsProcessing(false);
+  }
+
   const pageDimensions = {
     contentType: 'Other pages',
   };
@@ -78,6 +108,44 @@ function Resources() {
             </div>
           </div>
         </div>
+        <Heading className={Styles.downloadsHeader} level={2}>
+          Newsletter Sign-up
+        </Heading>
+        {success && (
+          <p>
+            <FormSuccess message={success} />
+          </p>
+        )}
+        {!success && (
+          <>
+            <p className={Styles.intro}>
+              Enter your email below to opt into receiving curriculum resources &amp; updates.
+            </p>
+            <FormError message={error} />
+            <form onSubmit={handleSubmit} className={classNames('container', 'container-xs')}>
+              <div className={classNames('form-group')}>
+                <label htmlFor="new-email" className={classNames('form-label')}>
+                  Email
+                  <input
+                    id="new-email"
+                    value={newEmail}
+                    type="email"
+                    required
+                    onChange={(e) => setNewEmail(e.target.value)}
+                    className={classNames('form-control')}
+                  />
+                </label>
+              </div>
+              <div className={classNames('form-actions')}>
+                <FormProcessing isProcessing={isProcessing}>
+                  <Button type="submit" theme="blue" width="md" size="md">
+                    Sign-up now
+                  </Button>
+                </FormProcessing>
+              </div>
+            </form>
+          </>
+        )}
         <Like contentId="Resources" callToAction="Was this resource helpful?" />
       </div>
     </div>

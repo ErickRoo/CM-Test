@@ -85,18 +85,20 @@ function SummaryAnimationShield({ shieldImage, skillsSorted, buttonsRef, action 
         {topSvgPaths.map((pathD, index) => {
           const skill = skillsSorted[index - 1];
 
-          return <motion.path
-            key={`top-svg-shield-${index > 0 ? skill.id : 'background'}`}
-            className={Styles[`fill__${index > 0 ? skill.id : 'background'}`]}
-            style={index > 0 ? {fill: skill.foregroundColor} : {}}
-            custom={index}
-            initial="initial"
-            animate={pathControls}
-            variants={motionPathOptions}
-            onMouseEnter={() => handlePathHover(index)}
-            onClick={() => action(index - 1)}
-            d={pathD}
-          />
+          return (
+            <motion.path
+              key={`top-svg-shield-${index > 0 ? skill.id : 'background'}`}
+              className={Styles[`fill__${index > 0 ? skill.id : 'background'}`]}
+              style={index > 0 ? { fill: skill.foregroundColor } : {}}
+              custom={index}
+              initial="initial"
+              animate={pathControls}
+              variants={motionPathOptions}
+              onMouseEnter={() => handlePathHover(index)}
+              onClick={() => action(index - 1)}
+              d={pathD}
+            />
+          );
         })}
       </motion.svg>
       <GatsbyImage image={gatsbyShieldImg} alt={shieldImage?.alt} />
@@ -129,6 +131,7 @@ SummaryAnimationShield.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       title: PropTypes.string,
+      foregroundColor: PropTypes.string,
     })
   ).isRequired,
   buttonsRef: PropTypes.oneOfType([PropTypes.func, PropTypes.any]).isRequired,

@@ -45,7 +45,7 @@ function CardJob({ job, foregroundColor, showHeatHighlight, active }) {
     cardControls.start({ rotateY: !reverse ? 180 : 0 });
     btnControls.start({ z: !reverse ? -2 : 5 });
     setTimeout(() => setReversed(!reverse), 300);
-  }
+  };
 
   useEffect(() => {
     if (!active && reverse) {

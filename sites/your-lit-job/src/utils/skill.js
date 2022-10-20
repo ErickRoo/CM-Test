@@ -53,7 +53,7 @@ export function getDefaultSkills() {
   const defaultSkills = {};
 
   Object.keys(skills).forEach((index) => {
-    defaultSkills[index] = {value: 0};
+    defaultSkills[index] = { value: 0 };
   });
 
   return defaultSkills;

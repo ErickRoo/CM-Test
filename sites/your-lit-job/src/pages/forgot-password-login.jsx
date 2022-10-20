@@ -65,7 +65,7 @@ function ForgotPasswordLogin() {
           <p>Enter the username you used when you created your account.</p>
         </GenericPageCopy>
         <IsUser>
-          <p style={{textAlign: 'center'}}>Please logout to reset another account.</p>
+          <p style={{ textAlign: 'center' }}>Please logout to reset another account.</p>
         </IsUser>
         <IsAnonymous>
           <FormError message={error} />

@@ -45,7 +45,8 @@ function MoreContent({ headingLevel, content, className, title }) {
         {title}
       </Heading>
       <div className={Styles.maContainer}>
-        {content.map((row) => {
+        {content.map((rowRaw) => {
+          const row = rowRaw;
           row.industryData = selectIndustryData(row.industry);
           return (
             <div className={Styles.content} key={row.id}>

@@ -5,19 +5,24 @@ import * as Styles from './content-type-icon.module.scss';
 
 function ContentTypeIcon({ type, size, className, corner }) {
   let contentType;
+  let contentTypeTitle;
 
   switch (type) {
     case 'ContentfulArticle':
       contentType = 'article';
+      contentTypeTitle = 'Article';
       break;
     case 'ContentfulMultimedia':
       contentType = 'multimedia';
+      contentTypeTitle = 'Video';
       break;
     case 'ContentfulMeetup':
       contentType = 'meetup';
+      contentTypeTitle = 'Meetup';
       break;
     case 'ContentfulAsk':
       contentType = 'ask';
+      contentTypeTitle = 'Ask Me Anything';
       break;
     default:
       contentType = false;
@@ -36,6 +41,7 @@ function ContentTypeIcon({ type, size, className, corner }) {
         )}
       >
         <div className={Styles.icon} />
+        {size !== 'small' && <div className={Styles.title}>{contentTypeTitle}</div>}
       </div>
     );
   }

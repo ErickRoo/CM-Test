@@ -248,7 +248,8 @@ function SignUp() {
                     className={classNames('form-check-input')}
                   />
                   <span>
-                    Sign up for the Your 🔥 Job newsletter to be the first to hear about new content, product updates, and more.
+                    Sign up for the Your 🔥 Job newsletter to be the first to hear about new content, product updates,
+                    and more.
                   </span>
                 </label>
               </div>

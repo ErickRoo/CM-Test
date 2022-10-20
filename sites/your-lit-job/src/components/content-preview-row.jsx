@@ -35,7 +35,7 @@ function ContentPreviewRow({ content, className, headingLevel, tracking, showFav
   const linkIndustry = industry?.title ? toSlug(industry.title) : '';
 
   return (
-    <div className={classNames(Styles.root, className)} ref={rootElement}>
+    <div className={classNames(Styles.root, className, 'clearFix')} ref={rootElement}>
       {tracking && <TrackImpression onImpression={trackImpression} element={rootElement} />}
       <Link to={`/industries/${linkIndustry}`} className={Styles.linkIndustry}>
         {industry?.headerImage && (
@@ -46,7 +46,6 @@ function ContentPreviewRow({ content, className, headingLevel, tracking, showFav
         )}
       </Link>
       <div className={Styles.imageWrapper}>
-        {showFavorite && <FavoriteButton postId={content.id} corner size="small" />}
         {showContentType && <ContentTypeIcon corner size="small" type={content.internal.type} />}
         <Link to={`/articles/${content.slug}`} onClick={trackClick}>
           {primaryImage && (
@@ -59,13 +58,20 @@ function ContentPreviewRow({ content, className, headingLevel, tracking, showFav
         </Link>
       </div>
       <ColorBar color="#ff2630" />
-      <div className={Styles.copy}>
-        <Heading level={headingLevel} className={Styles.title}>
-          <Link to={`/articles/${content.slug}`} onClick={trackClick}>
-            {content.title}
-          </Link>
-        </Heading>
-        <div className={classNames(Styles.description)}>{content.description.description}</div>
+      <div className={classNames(Styles.copyWrapper)}>
+        <div className={classNames(Styles.copy)}>
+          <Heading level={headingLevel} className={Styles.title}>
+            <Link to={`/articles/${content.slug}`} onClick={trackClick}>
+              {content.title}
+            </Link>
+          </Heading>
+          <div className={classNames(Styles.description)}>{content.description.description}</div>
+        </div>
+        {showFavorite && (
+          <div className={Styles.favorite}>
+            <FavoriteButton postId={content.id} />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -129,7 +135,7 @@ export const query = graphql`
     primaryImage {
       alt
       media {
-        image: gatsbyImageData(layout: FIXED, width: 240, height: 160)
+        image: gatsbyImageData(layout: FULL_WIDTH)
       }
     }
     metadata {
@@ -151,7 +157,7 @@ export const query = graphql`
     primaryImage {
       alt
       media {
-        image: gatsbyImageData(layout: FIXED, width: 240, height: 160)
+        image: gatsbyImageData(layout: FULL_WIDTH)
       }
     }
     metadata {

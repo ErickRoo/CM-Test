@@ -43,7 +43,7 @@
 }
 
 .not-found {
-  padding-left: 15%;
+  text-align: center;
 }
 
 .form-search-bar {
@@ -85,6 +85,7 @@
   border-top: 2px solid utils.$almost-black;
   border-bottom: 2px solid utils.$almost-black;
   border-radius: 50px 0 0 50px;
+  outline: none;
 
   &::placeholder {
     color: #848588;

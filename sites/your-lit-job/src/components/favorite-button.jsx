@@ -20,13 +20,9 @@ const motionOptions = {
 };
 
 const motionPathOptions = {
-  inactiveNormal: {
+  inactive: {
     fill: '#00000000',
     stroke: '#000',
-  },
-  inactiveCorner: {
-    fill: '#00000000',
-    stroke: '#fff',
   },
   active: {
     fill: '#ff0000ff',
@@ -34,7 +30,7 @@ const motionPathOptions = {
   },
 };
 
-function FavoriteButton({ postId, corner, size }) {
+function FavoriteButton({ postId, className, size }) {
   const { isLoaded, isSignedIn, profile, setFavoriteContent } = useAuth();
   const [active, setActive] = useState(false);
 
@@ -59,14 +55,9 @@ function FavoriteButton({ postId, corner, size }) {
     return null;
   }
 
-  const inactiveSelected = corner ? 'inactiveCorner' : 'inactiveNormal';
   return (
     <motion.div
-      className={classNames(
-        Styles.root,
-        Styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`],
-        corner && Styles.corner
-      )}
+      className={classNames(Styles.root, Styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`], className)}
       initial="hidden"
       animate={isSignedIn ? 'visible' : 'hidden'}
       variants={motionOptions}
@@ -76,8 +67,8 @@ function FavoriteButton({ postId, corner, size }) {
           viewBox="0 0 18 16"
           className={Styles.icon}
           xmlns="http://www.w3.org/2000/svg"
-          initial={inactiveSelected}
-          animate={active ? 'active' : inactiveSelected}
+          initial="inactive"
+          animate={active ? 'active' : 'inactive'}
         >
           <motion.path
             variants={motionPathOptions}
@@ -91,12 +82,12 @@ function FavoriteButton({ postId, corner, size }) {
 
 FavoriteButton.propTypes = {
   postId: PropTypes.string.isRequired,
-  corner: PropTypes.bool,
+  className: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium']),
 };
 
 FavoriteButton.defaultProps = {
-  corner: false,
+  className: null,
   size: 'medium',
 };
 

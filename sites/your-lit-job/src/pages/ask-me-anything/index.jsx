@@ -14,7 +14,6 @@ import GenericPageSubhead from '../../components/generic-page-subhead';
 import PageDimensions from '../../components/page-dimensions';
 import PageRichText from '../../components/page-rich-text';
 import ContentGrid from '../../components/content-grid';
-import ContentActions from '../../components/content-actions';
 
 function Index({ data }) {
   const { page } = data;
@@ -40,7 +39,6 @@ function Index({ data }) {
           <GenericPageSubhead>{page.subhead}</GenericPageSubhead>
           <PageRichText body={page.body} headingLevel={3} />
         </div>
-        <ContentActions favorite={page.id} />
         {askInterviews.length > 0 && (
           <ContentGrid
             content={askInterviews}

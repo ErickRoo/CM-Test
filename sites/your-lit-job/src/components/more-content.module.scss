@@ -6,24 +6,17 @@
 
 .title {
   max-width: 178px;
+  margin: auto;
   font-size: 21px;
   font-weight: utils.$semibold-weight;
   text-align: center;
-  margin: auto;
 }
 
 .maContainer {
+  gap: 15px;
   max-width: 1087px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 25px;
-}
-
-.content {
-  padding-block-end: 40px;
   margin-block-end: 40px;
-  background: linear-gradient(to top, #ffffff, transparent);
 }
 
 @include utils.bp-any(sm) {
@@ -31,13 +24,34 @@
     margin-block-end: 10px;
   }
 
-  .maContainer {
-    grid-template-columns: repeat(1, 1fr);
+  .content {
+    margin-block-end: 25px;
   }
 }
 
 @include utils.bp-any(md, lg) {
+  .maContainer {
+    display: flex;
+    justify-content: center;
+  }
+
   .title {
     padding-block-end: 40px;
+  }
+
+  .content {
+    display: flex;
+    flex: 345px 1 1;
+    max-width: 345px;
+  }
+
+  @media all and (max-width: 1200px) {
+    .maContainer {
+      flex-wrap: wrap;
+    }
+
+    .content {
+      flex: calc(50% - 15px) 1 1;
+    }
   }
 }

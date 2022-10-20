@@ -60,10 +60,9 @@ function MeetupPreviewPost({ post, headingLevel, className, ssr, showFavoriteBut
 
   return (
     <div className={classNames(className)}>
-      {showFavoriteButton && <FavoriteButton postId={post.id} corner />}
       {postImage()}
       <div className={classNames(PostStyles.content, 'container container-pad-lg')}>
-        <div>
+        <div className="clearfix">
           <Date
             className={classNames(PostStyles.eventDate, Styles.eventDate)}
             date={post.eventDate}
@@ -75,9 +74,10 @@ function MeetupPreviewPost({ post, headingLevel, className, ssr, showFavoriteBut
           <div className={classNames(PostStyles.description)}>{post.description.description}</div>
           {post.meetingLink && !post.video && (
             <a className={Styles.meetingLink} href={post.meetingLink}>
-              {post.meetingLink}
+              {post.meetingLink}4
             </a>
           )}
+          {showFavoriteButton && <FavoriteButton postId={post.id} className={classNames(PostStyles.favorite)} />}
         </div>
       </div>
     </div>
@@ -141,6 +141,7 @@ export const query = graphql`
     video {
       ...JwPlayerFields
     }
+    upcomingEvent
   }
 `;
 

@@ -9,10 +9,9 @@ import Heading from './heading';
 import VideoPlayer from './video-player';
 import { isAbsoluteUrl } from '../utils/url';
 import Button from './button';
-import FavoriteButton from './favorite-button';
 import { getGatsbyImage } from '../utils/image';
 
-function PostPreviewPost({ post, headingLevel, className, ssr, showFavoriteButton }) {
+function PostPreviewPost({ post, headingLevel, className, ssr }) {
   const wrapLink = (content) => {
     if (post.link) {
       if (isAbsoluteUrl(post.link)) {
@@ -37,7 +36,6 @@ function PostPreviewPost({ post, headingLevel, className, ssr, showFavoriteButto
 
   return (
     <div className={classNames(className)}>
-      {showFavoriteButton && <FavoriteButton postId={post.id} corner />}
       <div className={classNames(PostStyles.primaryImageContainer, Styles.primaryImageContainer)}>
         {!post.video &&
           wrapLink(
@@ -103,14 +101,12 @@ PostPreviewPost.propTypes = {
   headingLevel: PropTypes.number,
   className: PropTypes.string,
   ssr: PropTypes.bool,
-  showFavoriteButton: PropTypes.bool,
 };
 
 PostPreviewPost.defaultProps = {
   headingLevel: 0,
   className: null,
   ssr: false,
-  showFavoriteButton: false,
 };
 
 export const query = graphql`
