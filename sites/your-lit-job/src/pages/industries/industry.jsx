@@ -19,12 +19,12 @@ import PageDimensions from '../../components/page-dimensions';
 import Post from '../../components/post';
 // eslint-disable-next-line import/no-named-as-default,import/no-named-as-default-member
 import FeaturedJobs from '../../components/featured-jobs';
-import { sortByPublishDate } from '../../utils/entries-node';
+import { sortByDate } from '../../utils/entries-node';
 
 function Industry({ data }) {
   const { industry, tag } = data;
   const title = stripTagParents(tag.name);
-  const content = sortByPublishDate([...data.articles.nodes, ...data.multimedia.nodes]);
+  const content = sortByDate([...data.articles.nodes, ...data.multimedia.nodes]);
 
   const pageDimensions = {
     contentId: industry.id,

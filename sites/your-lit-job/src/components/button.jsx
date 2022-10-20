@@ -50,7 +50,7 @@ function Button({ type, theme, action, className, size, children, onClick, width
 
   if (type === 'div') {
     return (
-      <div className={elementClasses}  style={style}>
+      <div className={elementClasses} style={style}>
         <span className={Styles.inner}>{children}</span>
       </div>
     );
@@ -78,7 +78,7 @@ Button.defaultProps = {
   action: null,
   onClick: () => {},
   width: null,
-  style: {}
+  style: {},
 };
 
 export default Button;

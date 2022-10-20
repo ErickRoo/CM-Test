@@ -18,6 +18,7 @@ const searchClient = {
   },
 };
 
+// eslint-disable-next-line react/prop-types
 function EmptyQueryBoundary({ children }) {
   const { indexUiState, results } = useInstantSearch();
 

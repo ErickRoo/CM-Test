@@ -25,7 +25,6 @@ function MultimediaPreviewPost({ post, headingLevel, className, foregroundColor,
   const primaryImage = getGatsbyImage(post.primaryImage);
   return (
     <div className={classNames(className)}>
-      {showFavoriteButton && <FavoriteButton postId={post.id} corner />}
       <div className={classNames(PostStyles.primaryImageContainer, Styles.primaryImageContainer)}>
         <ContentTypeIcon type={post.internal.type} corner />
         {!showVideo() && (
@@ -49,13 +48,14 @@ function MultimediaPreviewPost({ post, headingLevel, className, foregroundColor,
         <ColorBar color={foregroundColor} />
       </div>
       <div className={classNames(PostStyles.content, 'container container-pad-lg')}>
-        <div>
+        <div className="clearfix">
           <Tags tags={post.metadata.tags} className={classNames(PostStyles.tags)} />
           <Heading level={headingLevel} className={classNames(PostStyles.title)}>
             <Link to={`/articles/${post.slug}`}>{post.title}</Link>
           </Heading>
           <div className={classNames(PostStyles.description)}>{post.description.description}</div>
           <AsSeenOn source={post.asSeenOn} className={classNames(PostStyles.asSeenOn)} />
+          {showFavoriteButton && <FavoriteButton postId={post.id} className={classNames(PostStyles.favorite)} />}
         </div>
       </div>
     </div>

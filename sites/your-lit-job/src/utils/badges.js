@@ -271,7 +271,7 @@ export const badges = [
     ],
     triggers: {
       tags: ['industrycareerdevelopment'],
-    }
+    },
   },
 ];
 

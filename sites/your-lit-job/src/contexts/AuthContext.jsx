@@ -144,6 +144,22 @@ export function AuthProvider({ children }) {
   }
 
   /**
+   * Submit email to resource mailing list
+   *
+   * @param {string} email
+   * @returns {Promise<void>}
+   */
+  async function sendResourceOptIn(email) {
+    let uid;
+    if (window.jstag) {
+      // eslint-disable-next-line no-undef
+      uid = window.jstag.ckieGet('seerid');
+    }
+
+    await httpsCallable(functions, 'sendResourceOptIn')({ email, uid });
+  }
+
+  /**
    * Create user account in Firebase auth
    *
    * @param {string} username
@@ -638,6 +654,7 @@ export function AuthProvider({ children }) {
       reauthenticate,
       sendLink,
       acceptLink,
+      sendResourceOptIn,
       setEmail,
       setAvatar,
       setWatchedIntro,

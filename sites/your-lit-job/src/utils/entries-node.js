@@ -60,7 +60,8 @@ exports.sortEntriesByPriority = (orginalEntries, tie = null, mutator = null) => 
   });
 
   // Generate points for each article
-  entries.forEach((article) => {
+  entries.forEach((articleRaw) => {
+    const article = articleRaw;
     article.points = 0;
 
     // Opportunity for advanced manipulation
@@ -80,14 +81,7 @@ exports.sortEntriesByPriority = (orginalEntries, tie = null, mutator = null) => 
 
     // Resolve ties with publish date or meeting date
     if (tie === 'date') {
-      const aDate = a.eventDate ? a.eventDate : a.publishDate;
-      const bDate = b.eventDate ? b.eventDate : b.publishDate;
-      if (aDate > bDate) {
-        return -1;
-      }
-      if (aDate < bDate) {
-        return 1;
-      }
+      return exports.sortByDateFunc(a, b);
     }
 
     return 0;
@@ -100,10 +94,28 @@ exports.requireOne = (entry, requiredFields) => {
   return requiredFields.some((field) => entry[field] !== null && entry[field] !== undefined);
 };
 
-exports.sortByPublishDate = (entries) => {
-  entries.sort((a, b) => {
-    return new Date(a.publishDate).getTime() < new Date(b.publishDate).getTime() ? 1 : -1;
-  });
+exports.sortByDate = (entries) => {
+  entries.sort(exports.sortByDateFunc);
 
   return entries;
+};
+
+exports.sortByDateFunc = (a, b) => {
+  // Long, verbose sorting function necessary to prevent hydration issues
+  const aDate = exports.getEntryDate(a);
+  const bDate = exports.getEntryDate(b);
+
+  if (aDate > bDate) {
+    return -1;
+  }
+
+  if (aDate < bDate) {
+    return 1;
+  }
+
+  return 0;
+};
+
+exports.getEntryDate = (entry) => {
+  return entry.eventDate ? entry.eventDate : entry.publishDate;
 };

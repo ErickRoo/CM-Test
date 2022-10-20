@@ -1,7 +1,9 @@
 const config = require('../../site-config');
 
 // eslint-disable-next-line import/prefer-default-export
-export function trackEvent(action, category = null, label = null, value = null, data = {}) {
+export function trackEvent(action, category = null, label = null, value = null, dataRaw = {}) {
+  const data = dataRaw;
+
   if (category) {
     data.event_category = category;
   }

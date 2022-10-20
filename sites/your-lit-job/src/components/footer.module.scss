@@ -9,12 +9,7 @@
   background-color: utils.$almost-black;
 
   @media print {
-    color: utils.$almost-black;
-    background-color: transparent;
-
-    a {
-      color: utils.$almost-black;
-    }
+    display: none;
   }
 }
 
@@ -267,6 +262,15 @@
   }
 
   .t4k {
+    justify-content: center;
+  }
+}
+
+.printFooter {
+  display: none;
+
+  @media print {
+    display: flex;
     justify-content: center;
   }
 }

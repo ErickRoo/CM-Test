@@ -89,8 +89,14 @@
 }
 
 .asSeenOn {
+  float: left;
   margin-top: 15px;
   font-family: 'Montserrat', sans-serif;
+}
+
+.favorite {
+  float: right;
+  margin-top: 15px;
 }
 
 @include utils.bp-any(hover) {

@@ -2,7 +2,8 @@
 
 .root {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   border-radius: utils.$border-radius-ty;
 }
@@ -48,8 +49,21 @@
   letter-spacing: 0.05em;
 }
 
-.copy {
+.copyWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 18px 20px 28px;
+}
+
+.copy {
+  flex-grow: 1;
+}
+
+.favorite {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
 }
 
 .description {

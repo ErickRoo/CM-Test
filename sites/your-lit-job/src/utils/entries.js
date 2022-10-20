@@ -10,7 +10,9 @@ const {
   injectEntriesByNth,
   isPlaceholder,
   requireOne,
-  sortByPublishDate,
+  sortByDate,
+  sortByDateFunc,
+  getEntryDate,
 } = require('./entries-node');
 
 export {
@@ -23,5 +25,7 @@ export {
   injectEntriesByNth,
   isPlaceholder,
   requireOne,
-  sortByPublishDate,
+  sortByDateFunc,
+  sortByDate,
+  getEntryDate,
 };

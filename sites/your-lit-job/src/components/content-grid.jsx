@@ -9,7 +9,16 @@ import ContentPreviewColumn from './content-preview-column';
 import Heading from './heading';
 import { trackEvent } from '../utils/track';
 
-function ContentGrid({ headingLevel, title, foregroundColor, backgroundColor, content, className, showContentType, showFavorite }) {
+function ContentGrid({
+  headingLevel,
+  title,
+  foregroundColor,
+  backgroundColor,
+  content,
+  className,
+  showContentType,
+  showFavorite,
+}) {
   return (
     <div className={classNames(Styles.root, className)} style={{ background: backgroundColor }}>
       {title && (
@@ -26,7 +35,7 @@ function ContentGrid({ headingLevel, title, foregroundColor, backgroundColor, co
             <ContentPreviewColumn
               content={contentItem}
               className={Styles.content}
-              key={content.id}
+              key={contentItem.id}
               headingLevel={headingLevel + 1}
               foregroundColor={foregroundColor}
               showContentType={showContentType}

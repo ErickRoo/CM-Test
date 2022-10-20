@@ -288,6 +288,26 @@ function Nav() {
           </Link>
         </li>
 
+        {/* Nav meetups */}
+        <li className={classNames(Styles.navItem, Styles.navMeetUp)} ref={navMeetUp}>
+          <Link
+            to="/meetups"
+            className={Styles.navItemLink}
+            activeClassName={Styles.navItemLinkActive}
+            partiallyActive
+            onClick={() => {
+              window.requestAnimationFrame(() => {
+                setIsIndustryOpen(false);
+                setIsFamiliesOpen(false);
+                setIsDotsOpen(false);
+              });
+            }}
+          >
+            <span className={Styles.navItemIcon} />
+            <span className={Styles.navItemText}>Meetups</span>
+          </Link>
+        </li>
+
         <li className={classNames(Styles.navItem, Styles.navFamilies, Styles.navItemHasChildren)} ref={navFamilies}>
           <button
             className={classNames(Styles.navItemLink, {
@@ -333,26 +353,6 @@ function Nav() {
           </div>
         </li>
 
-        {/* Nav meetups */}
-        <li className={classNames(Styles.navItem, Styles.navMeetUp)} ref={navMeetUp}>
-          <Link
-            to="/meetups"
-            className={Styles.navItemLink}
-            activeClassName={Styles.navItemLinkActive}
-            partiallyActive
-            onClick={() => {
-              window.requestAnimationFrame(() => {
-                setIsIndustryOpen(false);
-                setIsFamiliesOpen(false);
-                setIsDotsOpen(false);
-              });
-            }}
-          >
-            <span className={Styles.navItemIcon} />
-            <span className={Styles.navItemText}>Meetups</span>
-          </Link>
-        </li>
-
         {/* New nav route */}
         <li className={classNames(Styles.navItem, Styles.navThreeDots)} ref={navThreeDots}>
           <button
@@ -379,6 +379,48 @@ function Nav() {
               data-open={isDotsOpen}
               ref={threeDotsChildren}
             >
+              <li className={classNames(Styles.navChild, Styles.navAskMeAnything)} ref={navAskMeAnything}>
+                <Link
+                  to="/ask-me-anything"
+                  className={Styles.navItemLinkDots}
+                  activeClassName={Styles.navItemLinkActiveDots}
+                  onClick={() => {
+                    trackClick('Ask Me Anything');
+                    window.requestAnimationFrame(() => {
+                      setIsDotsOpen(false);
+                      setIsIndustryOpen(false);
+                      setIsFamiliesOpen(false);
+                    });
+                  }}
+                >
+                  <span className={classNames(Styles.navItemIcon, Styles.navItemIconDots)} />
+                  <span>
+                    Ask Me Anything
+                    <ToolTip parent={navAskMeAnything} position="bottom" offset={-14}>
+                      Talk to an expert
+                    </ToolTip>
+                  </span>
+                </Link>
+              </li>
+
+              <li className={classNames(Styles.navChild, Styles.navMeetUp)} ref={navMeetUp}>
+                <Link
+                  to="/meetups"
+                  className={Styles.navItemLinkDots}
+                  activeClassName={Styles.navItemLinkActiveDots}
+                  onClick={() => {
+                    window.requestAnimationFrame(() => {
+                      setIsDotsOpen(false);
+                      setIsIndustryOpen(false);
+                      setIsFamiliesOpen(false);
+                    });
+                  }}
+                >
+                  <span className={classNames(Styles.navItemIcon, Styles.navItemIconDots)} />
+                  <span>Meetups</span>
+                </Link>
+              </li>
+
               <li className={classNames(Styles.navItem, Styles.navFamilies)} ref={navFamilies}>
                 <button
                   className={classNames(Styles.navItemLinkDots, {
@@ -426,48 +468,6 @@ function Nav() {
                     </li>
                   </ul>
                 </div>
-              </li>
-
-              <li className={classNames(Styles.navChild, Styles.navAskMeAnything)} ref={navAskMeAnything}>
-                <Link
-                  to="/ask-me-anything"
-                  className={Styles.navItemLinkDots}
-                  activeClassName={Styles.navItemLinkActiveDots}
-                  onClick={() => {
-                    trackClick('Ask Me Anything');
-                    window.requestAnimationFrame(() => {
-                      setIsDotsOpen(false);
-                      setIsIndustryOpen(false);
-                      setIsFamiliesOpen(false);
-                    });
-                  }}
-                >
-                  <span className={classNames(Styles.navItemIcon, Styles.navItemIconDots)} />
-                  <span>
-                    Ask Me Anything
-                    <ToolTip parent={navAskMeAnything} position="bottom" offset={-14}>
-                      Talk to an expert
-                    </ToolTip>
-                  </span>
-                </Link>
-              </li>
-
-              <li className={classNames(Styles.navChild, Styles.navMeetUp)} ref={navMeetUp}>
-                <Link
-                  to="/meetups"
-                  className={Styles.navItemLinkDots}
-                  activeClassName={Styles.navItemLinkActiveDots}
-                  onClick={() => {
-                    window.requestAnimationFrame(() => {
-                      setIsDotsOpen(false);
-                      setIsIndustryOpen(false);
-                      setIsFamiliesOpen(false);
-                    });
-                  }}
-                >
-                  <span className={classNames(Styles.navItemIcon, Styles.navItemIconDots)} />
-                  <span>Meetups</span>
-                </Link>
               </li>
             </ul>
           </div>

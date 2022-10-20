@@ -21,7 +21,8 @@ import {
   sortEntriesBySticky,
   injectEntriesByNth,
   requireOne,
-  sortByPublishDate,
+  sortByDate,
+  sortByDateFunc,
 } from '../utils/entries';
 import { isPlaceholder } from '../utils/placeholder';
 import { findTagIdBySkill, getSkillsCacheKey, sortSkills } from '../utils/skill';
@@ -36,6 +37,10 @@ import { getUserCompletedBadgesAnyLevel } from '../utils/badges';
 import { getPostsBasedOnFavoriteFilter } from '../utils/posts-filtered';
 
 function Index({ data }) {
+  const allPosts = data.posts.nodes.filter((node) => {
+    return requireOne(node, ['videos', 'primaryImage']) && !isPlaceholder(node);
+  });
+
   const { isLoaded, profile, addQuickTipAlert, isSignedIn } = useAuth();
   const [explorerModal, setExplorerModal] = useState(false);
   const [badgeModal, setBadgeModal] = useState(false);
@@ -126,21 +131,11 @@ function Index({ data }) {
    * @returns {Array.<Object>}
    */
   function defaultFeed() {
-    const allPosts = data.posts.nodes.filter((node) => {
-      return requireOne(node, ['videos', 'primaryImage']) && !isPlaceholder(node);
-    });
-
     // Build feed
     const sticky = sortEntriesBySticky(filterStickyEntries(allPosts));
     const nonsticky = filterNonstickyEntries(allPosts);
-    const nonsortable = sortByPublishDate(filterNonsortableEntries(nonsticky));
-    const sortable = filterSortableEntries(
-      nonsticky.sort((a, b) => {
-        const dateA = Date.parse(a.publishDate);
-        const dateB = Date.parse(b.publishDate);
-        return dateB - dateA;
-      })
-    );
+    const nonsortable = sortByDate(filterNonsortableEntries(nonsticky));
+    const sortable = filterSortableEntries(nonsticky.sort(sortByDateFunc));
 
     return injectEntriesByNth([introVideoPost(), ...sticky, ...sortable], nonsortable, 4).slice(0, 40);
   }
@@ -150,9 +145,6 @@ function Index({ data }) {
    * @returns {Array.<Object>}
    */
   function userFeed() {
-    const allPosts = data.posts.nodes.filter((node) => {
-      return requireOne(node, ['videos', 'primaryIma`ge']) && !isPlaceholder(node);
-    });
     const skillsSorted = sortSkills(profile.skills);
     const pointsPerTag = {};
 
@@ -223,11 +215,9 @@ function Index({ data }) {
         if (!profile.watchedIntro) {
           feed.unshift(introVideoPost());
         }
-      } else {
-        feed = defaultFeed();
-      }
 
-      setPosts(feed);
+        setPosts(feed);
+      }
 
       // Handle scroll position on dynamically generated post list
       if (back) {

@@ -15,11 +15,11 @@ import GenericPageTitle from '../../components/generic-page-title';
 import GenericPageSubhead from '../../components/generic-page-subhead';
 import PageRichText from '../../components/page-rich-text';
 import ContentGrid from '../../components/content-grid';
-import { filterMeetings } from '../../utils/meet-up';
+import { filterMeetupsByUpcoming } from '../../utils/meetups';
 
 function MeetUp({ data }) {
-  const { page, meetUpInterviews } = data;
-  const meetUpInterviewsFiltered = filterMeetings(meetUpInterviews.nodes);
+  const { page, meetups } = data;
+  const meetupsFiltered = filterMeetupsByUpcoming(meetups.nodes);
 
   const pageDimensions = {
     contentId: page.id,
@@ -37,13 +37,13 @@ function MeetUp({ data }) {
       <ColorBar />
       <div className={classNames('container', 'container-hpad-md', Styles.container)}>
         <div className={Styles.copy}>
-          <GenericPageTitle>Meetups</GenericPageTitle>
-          <GenericPageSubhead>Ut enim ad minim veniam.</GenericPageSubhead>
+          <GenericPageTitle>{page.title}</GenericPageTitle>
+          <GenericPageSubhead>{page.subhead}</GenericPageSubhead>
           <PageRichText body={page.body} headingLevel={3} />
         </div>
-        {meetUpInterviewsFiltered.upcoming.length > 0 && (
+        {meetupsFiltered.upcoming.length > 0 && (
           <ContentGrid
-            content={meetUpInterviewsFiltered.upcoming}
+            content={meetupsFiltered.upcoming}
             title="Upcoming Meetups"
             headingLevel={2}
             foregroundColor="#0F9FFF"
@@ -51,9 +51,9 @@ function MeetUp({ data }) {
             showContentType={false}
           />
         )}
-        {meetUpInterviewsFiltered.past.length > 0 && (
+        {meetupsFiltered.past.length > 0 && (
           <ContentGrid
-            content={meetUpInterviewsFiltered.past}
+            content={meetupsFiltered.past}
             title="Past Meetups"
             headingLevel={2}
             foregroundColor="#0F9FFF"
@@ -78,7 +78,7 @@ MeetUp.propTypes = {
       metaKeywords: PropTypes.string,
       canonicalUrl: PropTypes.string,
     }),
-    meetUpInterviews: PropTypes.shape({
+    meetups: PropTypes.shape({
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
@@ -90,7 +90,7 @@ MeetUp.propTypes = {
 };
 
 export const query = graphql`
-  query QUERY_MEET_UP {
+  query {
     page: contentfulPage(slug: { eq: "meetups" }) {
       id
       title
@@ -101,8 +101,7 @@ export const query = graphql`
       metaKeywords
       canonicalUrl
     }
-
-    meetUpInterviews: allContentfulMeetup(
+    meetups: allContentfulMeetup(
       filter: { title: { regex: "/^(?!___PLACEHOLDER___)/i" } }
       sort: { fields: eventDate, order: DESC }
     ) {

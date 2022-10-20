@@ -47,7 +47,6 @@ function ContentPreviewColumn({
 
   return (
     <div className={classNames(Styles.root, className)}>
-      {showFavorite && <FavoriteButton postId={content.id} corner size="small" />}
       {showContentType && <ContentTypeIcon corner size="small" type={content.internal.type} />}
       <Link to={to} onClick={onContentClick}>
         {primaryImage && (
@@ -55,18 +54,25 @@ function ContentPreviewColumn({
         )}
       </Link>
       <ColorBar color={foregroundColor} />
-      <div className={Styles.copy}>
-        {tagsSelect[content.internal.type] && <Tags tags={content.metadata.tags} className={Styles.tags} />}
-        {dateSelect[content.internal.type] && (
-          <Date date={content.eventDate} className={Styles.date} format="writtenDateTime" />
-        )}
-        <Heading level={headingLevel} className={Styles.title}>
-          <Link to={to} onClick={onContentClick}>
-            {content.title}
-          </Link>
-        </Heading>
-        {content?.description?.description && (
-          <div className={Styles.description}>{content.description.description}</div>
+      <div className={Styles.copyWrapper}>
+        <div className={Styles.copy}>
+          {tagsSelect[content.internal.type] && <Tags tags={content.metadata.tags} className={Styles.tags} />}
+          {dateSelect[content.internal.type] && (
+            <Date date={content.eventDate} className={Styles.date} format="writtenDateTime" />
+          )}
+          <Heading level={headingLevel} className={Styles.title}>
+            <Link to={to} onClick={onContentClick}>
+              {content.title}
+            </Link>
+          </Heading>
+          {content?.description?.description && (
+            <div className={Styles.description}>{content.description.description}</div>
+          )}
+        </div>
+        {showFavorite && (
+          <div className={Styles.favorite}>
+            <FavoriteButton postId={content.id} />
+          </div>
         )}
       </div>
     </div>
